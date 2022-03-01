@@ -1,3 +1,9 @@
+*.properties
+target/
+.*
+resources/
+*.yaml
+
 # Compiled class file
 *.class
 
