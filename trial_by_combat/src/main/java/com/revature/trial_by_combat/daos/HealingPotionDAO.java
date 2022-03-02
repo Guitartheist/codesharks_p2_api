@@ -1,0 +1,19 @@
+package com.revature.trial_by_combat.daos;
+
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.revature.trial_by_combat.models.HealingPotion;
+
+@Repository
+public interface HealingPotionDAO extends CrudRepository<HealingPotion, Integer> {
+
+	
+	@Query("from HealingPotion hp where hp.itemname = :itemname")
+	Optional<HealingPotion> findHealingPotionByItemname(String itemname);
+
+}
