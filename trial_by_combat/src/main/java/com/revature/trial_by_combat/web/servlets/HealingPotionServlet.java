@@ -9,13 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.revature.trial_by_combat.models.HealingPotion;
+import com.revature.trial_by_combat.models.Weapon;
 import com.revature.trial_by_combat.services.HealingPotionService;
 
+@RestController
+@RequestMapping("/healing_potion")
 public class HealingPotionServlet {
+	
 	private final HealingPotionService healingPotionService;
 	
 	@Autowired
@@ -37,6 +44,13 @@ public class HealingPotionServlet {
 		return healingPotionService.findHealingPotionById(id);
 	}
 	
+    @GetMapping("/itemname")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Optional<HealingPotion> findHealingPotionByItemname(@RequestParam String itemname) {
+		return healingPotionService.findHealingPotionByItemname(itemname);
+    }
+	
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -56,4 +70,6 @@ public class HealingPotionServlet {
 	public void deleteHealingPotion(@RequestParam int id) {
 		healingPotionService.deleteHealingPotion(id);
 	}
+	
 }
+
