@@ -20,7 +20,7 @@ public class ArmorServices {
 	}
 
 	@Transactional
-	public Armor registerNewWeapon(Armor armor) {
+	public Armor registerNewArmor(Armor armor) {
 
 		boolean armorNameAvailable = armorDAO.findArmorByItemName(armor.getItemname()).isPresent();
 
@@ -47,7 +47,7 @@ public class ArmorServices {
 	}
 
 	@Transactional
-	public Armor updateWeapon(Armor armor) {
+	public Armor updateArmor(Armor armor) {
 		return armorDAO.save(armor);
 	}
 
