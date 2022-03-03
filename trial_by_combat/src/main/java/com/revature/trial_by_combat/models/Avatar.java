@@ -23,7 +23,7 @@ public class Avatar {
 	@JoinColumn(name = "player_id", unique = false, nullable = false, updatable = false)
 	Player player;
 	@Column(unique = false, nullable = false)
-	String avatarName;
+	String avatarname;
 	int strength;
 	int dexterity;
 	int constitution;
@@ -78,6 +78,16 @@ public class Avatar {
 			maximumHealth += (health>0) ? health : 1;
 		}
 		currentHealth = maximumHealth;
+	}
+	
+	
+
+	public String getAvatarname() {
+		return avatarname;
+	}
+
+	public void setAvatarName(String avatarname) {
+		this.avatarname = avatarname;
 	}
 
 	public int getId() {
@@ -170,7 +180,7 @@ public class Avatar {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(avatarName, charisma, constitution, currentHealth, dexterity, gold, id, intelligence,
+		return Objects.hash(avatarname, charisma, constitution, currentHealth, dexterity, gold, id, intelligence,
 				maximumHealth, player, strength, wisdom);
 	}
 
@@ -183,7 +193,7 @@ public class Avatar {
 		if (getClass() != obj.getClass())
 			return false;
 		Avatar other = (Avatar) obj;
-		return Objects.equals(avatarName, other.avatarName) && charisma == other.charisma
+		return Objects.equals(avatarname, other.avatarname) && charisma == other.charisma
 				&& constitution == other.constitution && currentHealth == other.currentHealth
 				&& dexterity == other.dexterity && gold == other.gold && id == other.id
 				&& intelligence == other.intelligence && maximumHealth == other.maximumHealth
@@ -192,7 +202,7 @@ public class Avatar {
 
 	@Override
 	public String toString() {
-		return "Avatar [id=" + id + ", player=" + player + ", avatarName=" + avatarName + ", strength=" + strength
+		return "Avatar [id=" + id + ", player=" + player + ", avatarname=" + avatarname + ", strength=" + strength
 				+ ", dexterity=" + dexterity + ", constitution=" + constitution + ", intelligence=" + intelligence
 				+ ", wisdom=" + wisdom + ", charisma=" + charisma + ", gold=" + gold + ", currentHealth="
 				+ currentHealth + ", maximumHealth=" + maximumHealth + "]";
