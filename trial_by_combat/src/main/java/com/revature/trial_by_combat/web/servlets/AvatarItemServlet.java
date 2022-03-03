@@ -22,20 +22,21 @@ import com.revature.trial_by_combat.models.AvatarItems;
 import com.revature.trial_by_combat.models.Item;
 import com.revature.trial_by_combat.services.AvatarItemService;
 import com.revature.trial_by_combat.services.AvatarService;
+import com.revature.trial_by_combat.services.ItemService;
 
 @RestController
 @RequestMapping("/avatar_item")
 public class AvatarItemServlet {
 	private final AvatarItemService avatarItemService;
 	private final AvatarService avatarService;
-	private final SessionFactory sessionFactory;
+	private final ItemService itemService;
 
 	@Autowired
 	public AvatarItemServlet(AvatarItemService avatarItemService, AvatarService avatarService,
-			SessionFactory sessionFactory) {
+			ItemService itemService) {
 		this.avatarItemService = avatarItemService;
 		this.avatarService = avatarService;
-		this.sessionFactory = sessionFactory;
+		this.itemService = itemService;
 	}
 
 	@PostMapping
@@ -43,9 +44,7 @@ public class AvatarItemServlet {
 	@ResponseBody
 	public AvatarItems createAvatarItem(@RequestBody AvatarItems avatarItem) {
 		avatarItem.setAvatar( avatarService.findAvatarById(avatarItem.getAvatar().getId()).get() );
-		Session session = sessionFactory.openSession();
-		session.load(avatarItem.getItem(), avatarItem.getItem().getId());
-		session.save(avatarItem.getItem());
+		avatarItem.setItem( itemService.findItemById(avatarItem.getItem().getId() ));
 		return avatarItemService.createNewAvatarItem(avatarItem);
 	}
 
@@ -79,9 +78,7 @@ public class AvatarItemServlet {
 	@ResponseBody
 	public AvatarItems updateAvatarItem(@RequestBody AvatarItems avatarItem) {
 		avatarItem.setAvatar( avatarService.findAvatarById(avatarItem.getAvatar().getId()).get() );
-		Session session = sessionFactory.openSession();
-		session.load(avatarItem.getItem(), avatarItem.getItem().getId());
-		session.save(avatarItem.getItem());
+		avatarItem.setItem( itemService.findItemById(avatarItem.getItem().getId() ));
 		return avatarItemService.updateAvatarItems(avatarItem);
 	}
 
