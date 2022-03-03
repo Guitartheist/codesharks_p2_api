@@ -13,50 +13,61 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.trial_by_combat.models.Player;
-import com.revature.trial_by_combat.services.PlayerService;
+import java.util.Optional;
+
+import com.revature.trial_by_combat.models.Weapon;
+import com.revature.trial_by_combat.services.WeaponServices;
 
 @RestController
-@RequestMapping("/player")
-public class PlayerServlet {
-	private final PlayerService playerService;
+@RequestMapping("/weapon")
+public class WeaponServlet {
+
+    private final WeaponServices weaponService;
 	
 	@Autowired
-	public PlayerServlet(PlayerService playerService) {
-		this.playerService = playerService;
+	public WeaponServlet(WeaponServices weaponService) {
+		this.weaponService = weaponService;
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Player createPlayer(@RequestBody Player player) {
-		return playerService.registerNewPlayer(player);
+	public Weapon createWeapon(@RequestBody Weapon weapon) {
+		return weaponService.registerNewWeapon(weapon);
 	}
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Player findPlayerById(@RequestParam int id) {
-		return playerService.findPlayerById(id).get();
+	public Weapon findWeaponById(@RequestParam int id) {
+		return weaponService.findWeaponById(id).get();
 	}
+
+    @GetMapping("/itemname")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Optional<Weapon> findWeaponByItemName(@RequestParam String itemname) {
+		return weaponService.findWeaponByItemName(itemname);
+    }
 	
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Iterable<Player> findAllPlayers() {
-		return playerService.findAllPlayers();
+	public Iterable<Weapon> findAllWeapons() {
+		return weaponService.findAllWeapons();
 	}
 	
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Player updatePlayer(@RequestBody Player player) {
-		return playerService.updatePlayer(player);
+	public Weapon updateWeapon(@RequestBody Weapon weapon) {
+		return weaponService.updateWeapon(weapon);
 	}
 	
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
-	public void deletePlayer(@RequestParam int id) {
-		playerService.deletePlayer(id);
+	public void deleteWeapon(@RequestParam int id) {
+		weaponService.deleteWeaponById(id);
 	}
+    
 }

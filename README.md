@@ -27,4 +27,4 @@ Players can post their own challenges or accept one that has already been posted
 
 ## Entity Relationship Diagram
 
-(need to insert ERD diagram)
+![Entity Relationship Diagram](erd.png?raw=true "Entity Relationship Diagram") 
