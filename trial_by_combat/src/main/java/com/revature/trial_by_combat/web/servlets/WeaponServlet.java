@@ -20,12 +20,12 @@ import com.revature.trial_by_combat.services.WeaponServices;
 
 @RestController
 @RequestMapping("/weapon")
-public class WeaponSerlet {
+public class WeaponServlet {
 
     private final WeaponServices weaponService;
 	
 	@Autowired
-	public WeaponServlet(WeaponService weaponService) {
+	public WeaponServlet(WeaponServices weaponService) {
 		this.weaponService = weaponService;
 	}
 	

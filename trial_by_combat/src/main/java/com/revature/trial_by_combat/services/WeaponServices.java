@@ -14,7 +14,7 @@ public class WeaponServices {
 	private final WeaponDAO weaponDAO;
 	
 	@Autowired
-	public WeaponService(WeaponDAO weaponDAO) {
+	public WeaponServices(WeaponDAO weaponDAO) {
 		this.weaponDAO = weaponDAO;
 	}
 	
@@ -23,7 +23,7 @@ public class WeaponServices {
 
 		boolean weaponNameAvailable = weaponDAO.findWeaponByItemName(weapon.getItemname()).isPresent();
 
-		if(!weaponNameAvailable) {
+		if(weaponNameAvailable) {
             return null;
 		}
 
