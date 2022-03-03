@@ -4,8 +4,11 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.DiscriminatorOptions;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorOptions(force = true)
 public class Item {
 	@Id
 	@GeneratedValue
