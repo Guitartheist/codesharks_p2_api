@@ -23,7 +23,7 @@ public class WeaponServices {
 
 		boolean weaponNameAvailable = weaponDAO.findWeaponByItemName(weapon.getItemname()).isPresent();
 
-		if(!weaponNameAvailable) {
+		if(weaponNameAvailable) {
             return null;
 		}
 
