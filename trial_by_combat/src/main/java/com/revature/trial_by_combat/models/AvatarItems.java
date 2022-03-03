@@ -21,7 +21,7 @@ public class AvatarItems {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "avatar_id", unique = false, nullable = false, updatable = false)
 	Avatar avatar;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@ManyToOne(optional = false, cascade = CascadeType.MERGE)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "item_id", unique = false, nullable = false, updatable = false)
 	Item item;
