@@ -13,7 +13,7 @@ import com.revature.trial_by_combat.models.HealingPotion;
 public interface HealingPotionDAO extends CrudRepository<HealingPotion, Integer> {
 
 	
-	@Query("from HealingPotion hp where hp.itemname = :itemname")
-	Optional<HealingPotion> findHealingPotionByItemname(String itemname);
+	@Query("from Item i where i.itemname = :itemname")
+	Optional<HealingPotion> findHealingPotionByItemName(String itemname);
 
 }

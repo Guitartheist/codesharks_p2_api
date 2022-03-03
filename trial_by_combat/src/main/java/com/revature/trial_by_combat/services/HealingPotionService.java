@@ -22,29 +22,29 @@ public class HealingPotionService {
 	@Transactional
 	public HealingPotion registerNewHealingPotion(HealingPotion healingPotion) {
 		
-		boolean itemnameAvailable = healingPotionDAO.findHealingPotionByItemname(healingPotion.getItemname()).isEmpty();
+		boolean healingPotionAvailable = healingPotionDAO.findHealingPotionByItemName(healingPotion.getItemname()).isPresent();
 		
-		if (itemnameAvailable) {
-			HealingPotion persistedHealingPotion = healingPotionDAO.save(healingPotion);
-			return persistedHealingPotion;
+		if (healingPotionAvailable) {
+			return null;
 		}
 		
-		return null;
+		HealingPotion persistedHealingPotion = healingPotionDAO.save(healingPotion);
+		return persistedHealingPotion;
 	}
 	
-	@Transactional
+	
 	public Iterable<HealingPotion> findAllHealingPotions() {
 		return healingPotionDAO.findAll();
 	}
 	
-	@Transactional
+	
 	public Optional<HealingPotion> findHealingPotionById(int id) {
 		return healingPotionDAO.findById(id);
 	}
 	
-	@Transactional
+	
 	public Optional<HealingPotion> findHealingPotionByItemname(String itemname) {
-		return healingPotionDAO.findHealingPotionByItemname(itemname);
+		return healingPotionDAO.findHealingPotionByItemName(itemname);
 	}
 	
 	@Transactional

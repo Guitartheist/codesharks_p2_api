@@ -47,7 +47,7 @@ public class HealingPotionServlet {
     @GetMapping("/itemname")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Optional<HealingPotion> findHealingPotionByItemname(@RequestParam String itemname) {
+	public Optional<HealingPotion> findHealingPotionByItemName(@RequestParam String itemname) {
 		return healingPotionService.findHealingPotionByItemname(itemname);
     }
 	
