@@ -39,10 +39,12 @@ public class PlayerService {
 		return playerDAO.findById(id);
 	}
 	
+	@Transactional
 	public Player updatePlayer(Player player) {
 		return playerDAO.save(player);
 	}
 	
+	@Transactional
 	public void deletePlayer(int id) {
 		playerDAO.deleteById(id);
 	}

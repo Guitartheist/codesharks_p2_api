@@ -13,50 +13,62 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.trial_by_combat.models.Player;
+import com.revature.trial_by_combat.models.Avatar;
+import com.revature.trial_by_combat.services.AvatarService;
 import com.revature.trial_by_combat.services.PlayerService;
 
 @RestController
-@RequestMapping("/player")
-public class PlayerServlet {
+@RequestMapping("/avatar")
+public class AvatarServlet {
+	private final AvatarService avatarService;
 	private final PlayerService playerService;
 	
 	@Autowired
-	public PlayerServlet(PlayerService playerService) {
+	public AvatarServlet(AvatarService avatarService, PlayerService playerService) {
+		this.avatarService = avatarService;
 		this.playerService = playerService;
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Player createPlayer(@RequestBody Player player) {
-		return playerService.registerNewPlayer(player);
+	public Avatar createAvatar(@RequestBody Avatar avatar) {
+		avatar.setPlayer( playerService.findPlayerById(avatar.getPlayer().getId()).get() );
+		return avatarService.createNewAvatar(avatar);
 	}
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Player findPlayerById(@RequestParam int id) {
-		return playerService.findPlayerById(id).get();
+	public Avatar findAvatarById(@RequestParam int id) {
+		return avatarService.findAvatarById(id).get();
+	}
+	
+	@GetMapping("/player")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Iterable<Avatar> findAvatarsByPlayerId(@RequestParam int id) {
+		return avatarService.findAvatarsByPlayerId(id);
 	}
 	
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Iterable<Player> findAllPlayers() {
-		return playerService.findAllPlayers();
+	public Iterable<Avatar> findAllAvatars() {
+		return avatarService.findAllAvatars();
 	}
 	
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Player updatePlayer(@RequestBody Player player) {
-		return playerService.updatePlayer(player);
+	public Avatar updateAvatar(@RequestBody Avatar avatar) {
+		avatar.setPlayer( playerService.findPlayerById(avatar.getPlayer().getId()).get() );
+		return avatarService.updateAvatar(avatar);
 	}
 	
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
-	public void deletePlayer(@RequestParam int id) {
-		playerService.deletePlayer(id);
+	public void deleteAvatar(@RequestParam int id) {
+		avatarService.deleteAvatar(id);
 	}
 }
