@@ -48,7 +48,7 @@ public class WeaponServiceTestSuite {
 		assertTrue(thrown.getMessage().contains("The weapon name selected is already in use."));
 
 		when(weaponDAO.findWeaponByItemName(weapon2.getItemname())).thenReturn(Optional.empty());
-		when(weaponDAO.save(weapon)).thenReturn(weapon2);
+		when(weaponDAO.save(weapon2)).thenReturn(weapon2);
 		assertNotNull(sut.registerNewWeapon(weapon2));
 
 	}
