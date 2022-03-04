@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.revature.trial_by_combat.models.AvatarItems;
+import com.revature.trial_by_combat.models.AvatarItem;
 
 @Repository
-public interface AvatarItemsDAO extends CrudRepository<AvatarItems, Integer> {
+public interface AvatarItemDAO extends CrudRepository<AvatarItem, Integer> {
 	@Query("from AvatarItems a where a.avatar.id=:id")
-	Iterable<AvatarItems> findAvatarItemsByAvatarId(int id);
+	Iterable<AvatarItem> findAvatarItemsByAvatarId(int id);
 }

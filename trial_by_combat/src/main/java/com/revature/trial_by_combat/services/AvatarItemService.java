@@ -6,37 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.trial_by_combat.daos.AvatarItemsDAO;
-import com.revature.trial_by_combat.models.AvatarItems;
+import com.revature.trial_by_combat.daos.AvatarItemDAO;
+import com.revature.trial_by_combat.models.AvatarItem;
 
 @Service
 public class AvatarItemService {
-	private final AvatarItemsDAO avatarItemsDAO;
+	private final AvatarItemDAO avatarItemsDAO;
 	
 	@Autowired
-	public AvatarItemService(AvatarItemsDAO avatarItemsDAO) {
+	public AvatarItemService(AvatarItemDAO avatarItemsDAO) {
 		this.avatarItemsDAO = avatarItemsDAO;
 	}
 	
 	@Transactional
-	public AvatarItems createNewAvatarItem(AvatarItems avatarItems) {
+	public AvatarItem createNewAvatarItem(AvatarItem avatarItems) {
 		return avatarItemsDAO.save(avatarItems);
 	}
 	
-	public Iterable<AvatarItems> findAllAvatarItems() {
+	public Iterable<AvatarItem> findAllAvatarItems() {
 		return avatarItemsDAO.findAll();
 	}
 	
-	public Optional<AvatarItems> findAvatarItemsById(int id) {
+	public Optional<AvatarItem> findAvatarItemsById(int id) {
 		return avatarItemsDAO.findById(id);
 	}
 	
-	public Iterable<AvatarItems> findAvatarItemsByAvatarId(int id) {
+	public Iterable<AvatarItem> findAvatarItemsByAvatarId(int id) {
 		return avatarItemsDAO.findAvatarItemsByAvatarId(id);
 	}
 	
 	@Transactional
-	public AvatarItems updateAvatarItems(AvatarItems avatarItems) {
+	public AvatarItem updateAvatarItems(AvatarItem avatarItems) {
 		return avatarItemsDAO.save(avatarItems);
 	}
 	

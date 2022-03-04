@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.trial_by_combat.models.AvatarItems;
+import com.revature.trial_by_combat.models.AvatarItem;
 import com.revature.trial_by_combat.models.Item;
 import com.revature.trial_by_combat.services.AvatarItemService;
 import com.revature.trial_by_combat.services.AvatarService;
@@ -42,41 +42,41 @@ public class AvatarItemServlet {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public AvatarItems createAvatarItem(@RequestBody AvatarItems avatarItem) {
+	public AvatarItem createAvatarItem(@RequestBody AvatarItem avatarItem) {
 		avatarItem.setAvatar( avatarService.findAvatarById(avatarItem.getAvatar().getId()).get() );
 		avatarItem.setItem( itemService.findItemById(avatarItem.getItem().getId() ));
 		return avatarItemService.createNewAvatarItem(avatarItem);
 	}
 
-	public AvatarItems findAvatarItemById(@RequestParam int id) {
+	public AvatarItem findAvatarItemById(@RequestParam int id) {
 		return avatarItemService.findAvatarItemsById(id).get();
 	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public AvatarItems findAvatarItemsById(@RequestParam int id) {
+	public AvatarItem findAvatarItemsById(@RequestParam int id) {
 		return avatarItemService.findAvatarItemsById(id).get();
 	}
 
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Iterable<AvatarItems> findAllAvatarItems() {
+	public Iterable<AvatarItem> findAllAvatarItems() {
 		return avatarItemService.findAllAvatarItems();
 	}
 
 	@GetMapping("/avatar")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Iterable<AvatarItems> findAvatarItemsByAvatarId(@RequestParam int id) {
+	public Iterable<AvatarItem> findAvatarItemsByAvatarId(@RequestParam int id) {
 		return avatarItemService.findAvatarItemsByAvatarId(id);
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public AvatarItems updateAvatarItem(@RequestBody AvatarItems avatarItem) {
+	public AvatarItem updateAvatarItem(@RequestBody AvatarItem avatarItem) {
 		avatarItem.setAvatar( avatarService.findAvatarById(avatarItem.getAvatar().getId()).get() );
 		avatarItem.setItem( itemService.findItemById(avatarItem.getItem().getId() ));
 		return avatarItemService.updateAvatarItems(avatarItem);

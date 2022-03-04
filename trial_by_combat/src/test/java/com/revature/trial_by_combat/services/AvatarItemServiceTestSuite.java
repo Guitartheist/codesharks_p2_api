@@ -6,22 +6,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.revature.trial_by_combat.daos.AvatarItemsDAO;
-import com.revature.trial_by_combat.models.AvatarItems;
+import com.revature.trial_by_combat.daos.AvatarItemDAO;
+import com.revature.trial_by_combat.models.AvatarItem;
 
 @ExtendWith(MockitoExtension.class)
 public class AvatarItemServiceTestSuite {
 	@Mock
-	private AvatarItemsDAO avatarItemsDAO;
+	private AvatarItemDAO avatarItemsDAO;
 
 	AvatarItemService sut;
 
-	AvatarItems avatarItem;
+	AvatarItem avatarItem;
 	
 	@BeforeEach
 	public void testPrep() {
 		sut = new AvatarItemService(avatarItemsDAO);
-		avatarItem = new AvatarItems();
+		avatarItem = new AvatarItem();
 	}
 
 	@Test

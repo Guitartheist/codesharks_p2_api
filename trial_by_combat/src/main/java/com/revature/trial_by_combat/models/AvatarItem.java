@@ -13,7 +13,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-public class AvatarItems {
+public class AvatarItem {
 	@Id
 	@GeneratedValue
 	int id;
@@ -63,7 +63,7 @@ public class AvatarItems {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AvatarItems other = (AvatarItems) obj;
+		AvatarItem other = (AvatarItem) obj;
 		return Objects.equals(avatar, other.avatar) && id == other.id && Objects.equals(item, other.item);
 	}
 
