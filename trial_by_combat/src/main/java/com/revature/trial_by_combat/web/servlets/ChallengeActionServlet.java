@@ -15,24 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.trial_by_combat.models.ChallengeAction;
 import com.revature.trial_by_combat.services.ChallengeActionService;
+import com.revature.trial_by_combat.services.ChallengeService;
 
 @RestController
 @RequestMapping("/challenge_action")
 public class ChallengeActionServlet {
 	private final ChallengeActionService challengeActionService;
-	//private final ChallengeService challengeService;
+	private final ChallengeService challengeService;
 	
 	@Autowired
-	public ChallengeActionServlet(ChallengeActionService challengeActionService/*, ChallengeService challengeService*/) {
+	public ChallengeActionServlet(ChallengeActionService challengeActionService, ChallengeService challengeService) {
 		this.challengeActionService = challengeActionService;
-		// this.challengeService = challengeService;
+		this.challengeService = challengeService;
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ChallengeAction addChallengeAction(@RequestBody ChallengeAction challengeAction) {
-		// challengeAction.setChallenge( challengeService.findById( challengeAction.getChallenge().getId() ) );
+		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ).get() );
 		return challengeActionService.updateChallengeAction(challengeAction);
 	}
 	
@@ -62,7 +63,7 @@ public class ChallengeActionServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ChallengeAction updateChallengeAction(@RequestBody ChallengeAction challengeAction) {
-		// challengeAction.setChallenge( challengeService.findById( challengeAction.getChallenge().getId() ) );
+		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ).get() );
 		return challengeActionService.updateChallengeAction(challengeAction);
 	}
 	

@@ -18,7 +18,7 @@ import com.revature.trial_by_combat.services.ChallengeService;
 import com.revature.trial_by_combat.services.AvatarService;
 
 @RestController
-@RequestMapping("/avatar")
+@RequestMapping("/challenge")
 public class ChallengeServlet {
 	private final ChallengeService challengeService;
 	private final AvatarService avatarService;

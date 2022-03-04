@@ -39,6 +39,7 @@ public class ChallengeActionService {
 	
 	@Transactional
 	public ChallengeAction updateChallengeAction(ChallengeAction challengeAction) {
+		challengeAction.setTimestamp( challengeActionDAO.findById(challengeAction.getId()).get().getTimestamp() );
 		return challengeActionDAO.save(challengeAction);
 	}
 	

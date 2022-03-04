@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class ChallengeAction {
 	@Id
@@ -33,10 +36,12 @@ public class ChallengeAction {
 		this.id = id;
 	}
 
+	@JsonProperty
 	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
 
+	@JsonIgnore
 	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
