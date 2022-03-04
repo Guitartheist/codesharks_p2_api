@@ -22,7 +22,7 @@ public class Loadout {
 	String name;
 	@Column(unique = true, nullable=false)
 	String description;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@ManyToOne(optional = false, cascade = CascadeType.MERGE)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "player_id", unique = false, nullable = false, updatable = false)
 	Player player;
