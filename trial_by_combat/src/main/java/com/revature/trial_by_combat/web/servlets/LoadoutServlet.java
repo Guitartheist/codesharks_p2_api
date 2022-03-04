@@ -68,7 +68,7 @@ public class LoadoutServlet {
 	@ResponseBody
 	public Loadout updateLoadout(@RequestBody Loadout loadout) {
 		Loadout loadoutToUpdate = loadoutService.findLoadoutById(loadout.getId()).get();
-		loadoutToUpdate.setPlayer( playerService.findPlayerById(loadout.getPlayer().getId()) .get() );
+		loadoutToUpdate.setPlayer( playerService.findPlayerById(loadout.getPlayer().getId()).get() );
 		loadoutToUpdate.setName(loadout.getName());
 		loadoutToUpdate.setDescription(loadout.getDescription());
 		
@@ -79,7 +79,7 @@ public class LoadoutServlet {
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteLoadout(@RequestParam int id) {
-		loadoutService.deleteLoadout(id);
+		loadoutService.deleteLoadoutById(id);
 	}
 }
 
