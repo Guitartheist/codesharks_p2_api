@@ -19,16 +19,16 @@ public class WeaponService{
 	}
 	
 	@Transactional
-	public Weapon registerNewWeapon(Weapon weapon){	
+	public Weapon registerNewWeapon(Weapon weapon) throws Exception{	
 
-		boolean weaponNameAvailable = weaponDAO.findWeaponByItemName(weapon.getItemname()).isPresent();
+			boolean weaponNameNotAvailable = weaponDAO.findWeaponByItemName(weapon.getItemname()).isPresent();
 
-		if(weaponNameAvailable) {
-            return null;
-		}
+			if(weaponNameNotAvailable) {
+	            throw new Exception("The weapon name selected is already in use.");
+			}
 
-        Weapon persistedWeapon = weaponDAO.save(weapon);
-        return persistedWeapon;	
+	        Weapon persistedWeapon = weaponDAO.save(weapon);
+	        return persistedWeapon;	
 	}
 
 	@Transactional

@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
@@ -56,8 +57,22 @@ public class ChallengeServiceTestSuite {
 
 	@Test
 	public void test_ChallengeService_createNewChallenge() throws Exception{
-		Challenge mockPersistedChallenge = sut.createNewChallenge(challenge);
-        assertNotNull(mockPersistedChallenge);
+		
+		when(challengeDAO.save(challenge)).thenReturn(challenge);
+		assertNotNull(sut.createNewChallenge(challenge));
+		
+		Challenge challenge2 = new Challenge();
+		challenge2.setAvatar(avatar);
+		challenge2.setChallenger(avatar);
+		
+		Exception thrown = assertThrows(
+		            Exception.class,
+		            () -> sut.createNewChallenge(challenge2),
+		            "An Avatar can't fight against themselves!");
+
+		        assertTrue(thrown.getMessage().contains("An Avatar can't fight against themselves!"));
+		
+		 
 	}
 	
 	@Test
@@ -102,23 +117,34 @@ public class ChallengeServiceTestSuite {
 	@Test
 	public void test_ChallengeService_updateChallenge()
 	{
+		when(challengeDAO.save(challenge)).thenReturn(challenge);
 		assertNotNull(sut.updateChallenge(challenge));
 	}
 	
-	// @Test
-	// public void test_AvatarService_deleteAvatar()
-	// {
-	// 	sut.deleteAvatar(1);
-	// }
+	 @Test
+	 public void test_ChallengeService_deleteChallengeById()
+	 {
+	 	sut.deleteChallengeById(1);
+	 }
 
 
     @Test
     public void test_ChallengeService_authenticateChallenge() throws Exception{
 
         assertTrue(sut.authenticateChallenge(avatar, challenger));
-        assertFalse(sut.authenticateChallenge(avatar, avatar));
-        avatar = null;
-        assertFalse(sut.authenticateChallenge(avatar, challenger));
+        Exception thrown = assertThrows(
+            Exception.class,
+            () -> sut.authenticateChallenge(avatar, avatar),
+            "An Avatar can't fight against themselves!");
 
-    }   
-}
+        assertTrue(thrown.getMessage().contains("An Avatar can't fight against themselves!"));
+        
+        Exception thrown2 = assertThrows(
+                Exception.class,
+                () -> sut.authenticateChallenge(avatar, null),
+                "An Avatar can't fight against themselves!");
+
+            assertTrue(thrown2.getMessage().contains("You can't have a challenge with one Avatar!"));
+     }
+
+}   
