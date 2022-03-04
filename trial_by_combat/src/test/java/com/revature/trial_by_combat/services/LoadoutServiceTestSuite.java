@@ -61,6 +61,6 @@ public class LoadoutServiceTestSuite {
 	@Test
 	public void test_LoadoutService_deleteLoadout()
 	{
-		sut.deleteLoadout(1);
+		sut.deleteLoadoutById(1);
 	}
 }
