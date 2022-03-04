@@ -27,124 +27,111 @@ import com.revature.trial_by_combat.models.Challenge;
 public class ChallengeServiceTestSuite {
 	@Mock
 	private ChallengeDAO challengeDAO;
-	
+
 	ChallengeService sut;
-	
+
 	Challenge challenge;
 
-    private AvatarDAO avatarDAO;
-	
+	private AvatarDAO avatarDAO;
+
 	AvatarService zut;
 
-    Avatar avatar;
+	Avatar avatar;
 
-    Avatar challenger;
+	Avatar challenger;
 
 	@BeforeEach
 	public void testPrep() {
 		sut = new ChallengeService(challengeDAO);
-        zut = new AvatarService(avatarDAO);
-        avatar = new Avatar();
-        avatar.setId(2);
-        challenger = new Avatar();
-        challenger.setId(3);
+		zut = new AvatarService(avatarDAO);
+		avatar = new Avatar();
+		avatar.setId(2);
+		challenger = new Avatar();
+		challenger.setId(3);
 		challenge = new Challenge();
-        challenge.setAvatar(avatar);
-        challenge.setChallenger(challenger);
-        challenge.setId(1);
+		challenge.setAvatar(avatar);
+		challenge.setChallenger(challenger);
+		challenge.setId(1);
 
 	}
 
 	@Test
-	public void test_ChallengeService_createNewChallenge() throws Exception{
-		
+	public void test_ChallengeService_createNewChallenge() throws Exception {
+
 		when(challengeDAO.save(challenge)).thenReturn(challenge);
 		assertNotNull(sut.createNewChallenge(challenge));
-		
+
 		Challenge challenge2 = new Challenge();
 		challenge2.setAvatar(avatar);
 		challenge2.setChallenger(avatar);
-		
-		Exception thrown = assertThrows(
-		            Exception.class,
-		            () -> sut.createNewChallenge(challenge2),
-		            "An Avatar can't fight against themselves!");
 
-		        assertTrue(thrown.getMessage().contains("An Avatar can't fight against themselves!"));
-		
-		 
+		Exception thrown = assertThrows(Exception.class, () -> sut.createNewChallenge(challenge2),
+				"An Avatar can't fight against themselves!");
+
+		assertTrue(thrown.getMessage().contains("An Avatar can't fight against themselves!"));
+
 	}
-	
+
 	@Test
-	public void test_ChallengeService_findAllChallenges()
-	{
-        List<Challenge> mockList = new ArrayList<Challenge>();
-        mockList.add(challenge);
-        Iterable<Challenge> iterableMock = mockList;
-        when(challengeDAO.findAll()).thenReturn(iterableMock);
+	public void test_ChallengeService_findAllChallenges() {
+		List<Challenge> mockList = new ArrayList<Challenge>();
+		mockList.add(challenge);
+		Iterable<Challenge> iterableMock = mockList;
+		when(challengeDAO.findAll()).thenReturn(iterableMock);
 		Iterable<Challenge> challengeList = sut.findAllChallenges();
-        assertNotNull(challengeList);
+		assertNotNull(challengeList);
 	}
-	
-	@Test
-	public void test_ChallengeService_findChallengeById(){
 
-        Optional<Challenge> mockChallenge = Optional.of(challenge);
-        when(challengeDAO.findById(1)).thenReturn(mockChallenge);
+	@Test
+	public void test_ChallengeService_findChallengeById() {
+
+		Optional<Challenge> mockChallenge = Optional.of(challenge);
+		when(challengeDAO.findById(1)).thenReturn(mockChallenge);
 		assertTrue(sut.findChallengeById(1).isPresent());
 	}
 
-    @Test
-	public void test_ChallengeService_findAllChallengesByAvatarId()
-	{
-        List<Challenge> mockList = new ArrayList<Challenge>();
-        mockList.add(challenge);
-        Iterable<Challenge> iterableMock = mockList;
-        when(challengeDAO.findAllChallengesByAvatarId(2)).thenReturn(iterableMock);
-        assertNotNull(sut.findAllChallengesByAvatarId(2));
+	@Test
+	public void test_ChallengeService_findAllChallengesByAvatarId() {
+		List<Challenge> mockList = new ArrayList<Challenge>();
+		mockList.add(challenge);
+		Iterable<Challenge> iterableMock = mockList;
+		when(challengeDAO.findAllChallengesByAvatarId(2)).thenReturn(iterableMock);
+		assertNotNull(sut.findAllChallengesByAvatarId(2));
 	}
 
-    @Test
-	public void test_ChallengeService_findAllChallengesByChallengerId()
-	{
-        List<Challenge> mockList = new ArrayList<Challenge>();
-        mockList.add(challenge);
-        Iterable<Challenge> iterableMock = mockList;
-        when(challengeDAO.findAllChallengesByChallengerId(3)).thenReturn(iterableMock);
-        assertNotNull(sut.findAllChallengesByChallengerId(3));
-	}
-	
 	@Test
-	public void test_ChallengeService_updateChallenge()
-	{
+	public void test_ChallengeService_findAllChallengesByChallengerId() {
+		List<Challenge> mockList = new ArrayList<Challenge>();
+		mockList.add(challenge);
+		Iterable<Challenge> iterableMock = mockList;
+		when(challengeDAO.findAllChallengesByChallengerId(3)).thenReturn(iterableMock);
+		assertNotNull(sut.findAllChallengesByChallengerId(3));
+	}
+
+	@Test
+	public void test_ChallengeService_updateChallenge() {
 		when(challengeDAO.save(challenge)).thenReturn(challenge);
 		assertNotNull(sut.updateChallenge(challenge));
 	}
-	
-	 @Test
-	 public void test_ChallengeService_deleteChallengeById()
-	 {
-	 	sut.deleteChallengeById(1);
-	 }
 
+	@Test
+	public void test_ChallengeService_deleteChallengeById() {
+		sut.deleteChallengeById(1);
+	}
 
-    @Test
-    public void test_ChallengeService_authenticateChallenge() throws Exception{
+	@Test
+	public void test_ChallengeService_authenticateChallenge() throws Exception {
 
-        assertTrue(sut.authenticateChallenge(avatar, challenger));
-        Exception thrown = assertThrows(
-            Exception.class,
-            () -> sut.authenticateChallenge(avatar, avatar),
-            "An Avatar can't fight against themselves!");
+		assertTrue(sut.authenticateChallenge(avatar, challenger));
+		Exception thrown = assertThrows(Exception.class, () -> sut.authenticateChallenge(avatar, avatar),
+				"An Avatar can't fight against themselves!");
 
-        assertTrue(thrown.getMessage().contains("An Avatar can't fight against themselves!"));
-        
-        Exception thrown2 = assertThrows(
-                Exception.class,
-                () -> sut.authenticateChallenge(avatar, null),
-                "An Avatar can't fight against themselves!");
+		assertTrue(thrown.getMessage().contains("An Avatar can't fight against themselves!"));
 
-            assertTrue(thrown2.getMessage().contains("You can't have a challenge with one Avatar!"));
-     }
+		Exception thrown2 = assertThrows(Exception.class, () -> sut.authenticateChallenge(avatar, null),
+				"An Avatar can't fight against themselves!");
 
-}   
+		assertTrue(thrown2.getMessage().contains("You can't have a challenge with one Avatar!"));
+	}
+
+}
