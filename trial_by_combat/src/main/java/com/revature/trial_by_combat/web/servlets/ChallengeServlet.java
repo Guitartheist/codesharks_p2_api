@@ -22,29 +22,29 @@ import com.revature.trial_by_combat.services.AvatarService;
 public class ChallengeServlet {
 	private final ChallengeService challengeService;
 	private final AvatarService avatarService;
-	
+
 	@Autowired
 	public ChallengeServlet(ChallengeService challengeService, AvatarService avatarService) {
 		this.challengeService = challengeService;
 		this.avatarService = avatarService;
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public Challenge createChallenge(@RequestBody Challenge challenge) throws Exception {
-		challenge.setAvatar( avatarService.findAvatarById(challenge.getAvatar().getId()).get());
-        challenge.setChallenger( avatarService.findAvatarById(challenge.getChallenger().getId()).get());
+		challenge.setAvatar(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
+		challenge.setChallenger(avatarService.findAvatarById(challenge.getChallenger().getId()).get());
 		return challengeService.createNewChallenge(challenge);
 	}
-	
+
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Challenge findChallengeById(@RequestParam int id) {
 		return challengeService.findChallengeById(id).get();
 	}
-	
+
 	@GetMapping("/avatar")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -52,29 +52,29 @@ public class ChallengeServlet {
 		return challengeService.findAllChallengesByAvatarId(id);
 	}
 
-    @GetMapping("/challenger")
+	@GetMapping("/challenger")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Iterable<Challenge> findAllChallengesByChallengerId(@RequestParam int id) {
 		return challengeService.findAllChallengesByChallengerId(id);
-    }
-	
+	}
+
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Iterable<Challenge> findAllChallenges() {
 		return challengeService.findAllChallenges();
 	}
-	
+
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Challenge updateChallenge(@RequestBody Challenge challenge) {
 		challenge.setAvatar(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
-        challenge.setChallenger(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
+		challenge.setChallenger(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
 		return challengeService.updateChallenge(challenge);
 	}
-	
+
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteChallengeById(@RequestParam int id) {
