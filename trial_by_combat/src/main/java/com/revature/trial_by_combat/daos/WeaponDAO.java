@@ -11,5 +11,5 @@ import com.revature.trial_by_combat.models.Weapon;
 @Repository
 public interface WeaponDAO extends CrudRepository<Weapon, Integer> {
 	@Query("from Item i where i.itemname=:itemname")
-    Optional<Weapon> findWeaponByItemName(String itemname);
+	Optional<Weapon> findWeaponByItemName(String itemname);
 }

@@ -22,20 +22,20 @@ import com.revature.trial_by_combat.services.WeaponService;
 @RequestMapping("/weapon")
 public class WeaponServlet {
 
-    private final WeaponService weaponService;
-	
+	private final WeaponService weaponService;
+
 	@Autowired
 	public WeaponServlet(WeaponService weaponService) {
 		this.weaponService = weaponService;
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Weapon createWeapon(@RequestBody Weapon weapon) {
+	public Weapon createWeapon(@RequestBody Weapon weapon) throws Exception {
 		return weaponService.registerNewWeapon(weapon);
 	}
-	
+
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -43,31 +43,31 @@ public class WeaponServlet {
 		return weaponService.findWeaponById(id).get();
 	}
 
-    @GetMapping("/itemname")
+	@GetMapping("/itemname")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Optional<Weapon> findWeaponByItemName(@RequestParam String itemname) {
 		return weaponService.findWeaponByItemName(itemname);
-    }
-	
+	}
+
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Iterable<Weapon> findAllWeapons() {
 		return weaponService.findAllWeapons();
 	}
-	
+
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Weapon updateWeapon(@RequestBody Weapon weapon) {
 		return weaponService.updateWeapon(weapon);
 	}
-	
+
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteWeapon(@RequestParam int id) {
 		weaponService.deleteWeaponById(id);
 	}
-    
+
 }
