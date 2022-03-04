@@ -1,5 +1,6 @@
 package com.revature.trial_by_combat.models;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -12,16 +13,20 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class ChallengeAction {
 	@Id
 	@GeneratedValue
 	int id;
-	int stepNumber;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	LocalDateTime timestamp;
+	@ManyToOne(optional = false, cascade = CascadeType.MERGE)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "challenge_id", unique = false, nullable = false, updatable = false)
 	Challenge challenge;
+	String description;
 
 	public int getId() {
 		return id;
@@ -31,12 +36,14 @@ public class ChallengeAction {
 		this.id = id;
 	}
 
-	public int getStepNumber() {
-		return stepNumber;
+	@JsonProperty
+	public LocalDateTime getTimestamp() {
+		return timestamp;
 	}
 
-	public void setStepNumber(int stepNumber) {
-		this.stepNumber = stepNumber;
+	@JsonIgnore
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public Challenge getChallenge() {
@@ -47,9 +54,17 @@ public class ChallengeAction {
 		this.challenge = challenge;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(challenge, id, stepNumber);
+		return Objects.hash(challenge, description, id, timestamp);
 	}
 
 	@Override
@@ -61,12 +76,14 @@ public class ChallengeAction {
 		if (getClass() != obj.getClass())
 			return false;
 		ChallengeAction other = (ChallengeAction) obj;
-		return Objects.equals(challenge, other.challenge) && id == other.id && stepNumber == other.stepNumber;
+		return Objects.equals(challenge, other.challenge) && Objects.equals(description, other.description)
+				&& id == other.id && Objects.equals(timestamp, other.timestamp);
 	}
 
 	@Override
 	public String toString() {
-		return "ChallengeAction [id=" + id + ", stepNumber=" + stepNumber + ", challenge=" + challenge + "]";
+		return "ChallengeAction [id=" + id + ", timestamp=" + timestamp + ", challenge=" + challenge + ", description="
+				+ description + "]";
 	}
 
 }

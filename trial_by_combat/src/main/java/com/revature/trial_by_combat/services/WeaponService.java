@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WeaponServices {
+public class WeaponService{
 
 	private final WeaponDAO weaponDAO;
 	
 	@Autowired
-	public WeaponServices(WeaponDAO weaponDAO) {
+	public WeaponService(WeaponDAO weaponDAO) {
 		this.weaponDAO = weaponDAO;
 	}
 	
