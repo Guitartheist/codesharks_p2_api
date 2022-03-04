@@ -8,6 +8,6 @@ import com.revature.trial_by_combat.models.AvatarItem;
 
 @Repository
 public interface AvatarItemDAO extends CrudRepository<AvatarItem, Integer> {
-	@Query("from AvatarItems a where a.avatar.id=:id")
+	@Query("from AvatarItem a where a.avatar.id=:id")
 	Iterable<AvatarItem> findAvatarItemsByAvatarId(int id);
 }
