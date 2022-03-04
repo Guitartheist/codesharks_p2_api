@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "1ff479c7-cdee-41f6-af30-291b576e1e7e",
+		"name": "ChallengeAction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/challenge_action",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"challenge_action"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/challenge_action/?id=",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"challenge_action",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Challenge ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/challenge_action/challenge/?id=",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"challenge_action",
+						"challenge",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/challenge_action",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"challenge_action"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"challenge\": {\"id\": \"\"},\r\n    \"description\": \"started a fight\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/challenge_action",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"challenge_action"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/challenge_action/?id=",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"challenge_action",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

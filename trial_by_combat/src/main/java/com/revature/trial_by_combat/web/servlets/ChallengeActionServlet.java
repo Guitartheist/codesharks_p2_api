@@ -34,7 +34,7 @@ public class ChallengeActionServlet {
 	@ResponseBody
 	public ChallengeAction addChallengeAction(@RequestBody ChallengeAction challengeAction) {
 		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ).get() );
-		return challengeActionService.updateChallengeAction(challengeAction);
+		return challengeActionService.addChallengeAction(challengeAction);
 	}
 	
 	@GetMapping
