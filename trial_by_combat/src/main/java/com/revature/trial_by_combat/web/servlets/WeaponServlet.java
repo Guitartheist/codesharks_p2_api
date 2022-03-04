@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 import com.revature.trial_by_combat.models.Weapon;
-import com.revature.trial_by_combat.services.WeaponServices;
+import com.revature.trial_by_combat.services.WeaponService;
 
 @RestController
 @RequestMapping("/weapon")
 public class WeaponServlet {
 
-    private final WeaponServices weaponService;
+    private final WeaponService weaponService;
 	
 	@Autowired
-	public WeaponServlet(WeaponServices weaponService) {
+	public WeaponServlet(WeaponService weaponService) {
 		this.weaponService = weaponService;
 	}
 	
