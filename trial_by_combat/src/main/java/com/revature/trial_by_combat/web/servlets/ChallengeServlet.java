@@ -18,7 +18,7 @@ import com.revature.trial_by_combat.services.ChallengeService;
 import com.revature.trial_by_combat.services.AvatarService;
 
 @RestController
-@RequestMapping("/avatar")
+@RequestMapping("/challenge")
 public class ChallengeServlet {
 	private final ChallengeService challengeService;
 	private final AvatarService avatarService;
@@ -35,7 +35,7 @@ public class ChallengeServlet {
 	public Challenge createChallenge(@RequestBody Challenge challenge) throws Exception {
 		challenge.setAvatar( avatarService.findAvatarById(challenge.getAvatar().getId()).get());
         challenge.setChallenger( avatarService.findAvatarById(challenge.getChallenger().getId()).get());
-		return challengeService.registerNewChallenge(challenge);
+		return challengeService.createNewChallenge(challenge);
 	}
 	
 	@GetMapping

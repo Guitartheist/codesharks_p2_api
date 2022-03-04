@@ -20,7 +20,7 @@ public class ChallengeService{
 	}
 	
 	@Transactional
-	public Challenge registerNewChallenge(Challenge challenge) throws Exception{	
+	public Challenge createNewChallenge(Challenge challenge) throws Exception{	
 
 		if(!authenticateChallenge(challenge.getAvatar(), challenge.getChallenger())){
             return null;

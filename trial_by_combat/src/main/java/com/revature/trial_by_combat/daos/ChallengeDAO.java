@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 import com.revature.trial_by_combat.models.Avatar;
 import com.revature.trial_by_combat.models.Challenge;
 
