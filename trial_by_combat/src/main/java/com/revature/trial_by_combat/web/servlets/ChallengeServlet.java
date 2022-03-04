@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
-import com.revature.trial_by_combat.models.Avatar;
 import com.revature.trial_by_combat.models.Challenge;
 import com.revature.trial_by_combat.services.ChallengeService;
 import com.revature.trial_by_combat.services.AvatarService;
@@ -37,7 +34,7 @@ public class ChallengeServlet {
 	@ResponseBody
 	public Challenge createChallenge(@RequestBody Challenge challenge) throws Exception {
 		challenge.setAvatar( avatarService.findAvatarById(challenge.getAvatar().getId()).get());
-        challenge.setChallenger( avatarService.findAvatarById(challenge.getAvatar().getId()).get());
+        challenge.setChallenger( avatarService.findAvatarById(challenge.getChallenger().getId()).get());
 		return challengeService.registerNewChallenge(challenge);
 	}
 	
@@ -51,15 +48,15 @@ public class ChallengeServlet {
 	@GetMapping("/avatar")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Optional<Challenge> findChallengeByAvatar(@RequestParam Avatar avatar) {
-		return challengeService.findChallengeByAvatar(avatar);
+	public Iterable<Challenge> findAllChallengesByAvatarId(@RequestParam int id) {
+		return challengeService.findAllChallengesByAvatarId(id);
 	}
 
     @GetMapping("/challenger")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Optional<Challenge> findChallengeByChallenger(@RequestParam Avatar challenger) {
-		return challengeService.findChallengeByChallenger(challenger);
+	public Iterable<Challenge> findAllChallengesByChallengerId(@RequestParam int id) {
+		return challengeService.findAllChallengesByChallengerId(id);
     }
 	
 	@GetMapping("/all")

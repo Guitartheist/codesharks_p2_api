@@ -11,9 +11,12 @@ import com.revature.trial_by_combat.models.Challenge;
 
 @Repository
 public interface ChallengeDAO extends CrudRepository<Challenge, Integer> {
-	
-    Optional<Challenge> findChallengeByAvatar(Avatar avatar);
-	Optional<Challenge> findChallengeByChallenger(Avatar challenger);
+
+    @Query("from Challenge a where a.avatar.id=:id")
+	Iterable<Challenge> findAllChallengesByAvatarId(int id);
+
+    @Query("from Challenge b where b.challenger.id=:id")
+	Iterable<Challenge> findAllChallengesByChallengerId(int id);
 
 	@Query("from Challenge c where c.avatar = :avatar and c.challenger = :challenger")
 	Challenge findChallengeByAvatarAndChallenger(Avatar avatar, Avatar challenger);
