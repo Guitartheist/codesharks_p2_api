@@ -41,7 +41,7 @@ public class PlayerService {
 	
 	@Transactional
 	public Player updatePlayer(Player player) {
-		if (playerDAO.findById(player.getId()).get().getPassword() == null)
+		if (player.getPassword() == null)
 			player.setPassword( playerDAO.findById(player.getId()).get().getPassword() );
 		return playerDAO.save(player);
 	}
