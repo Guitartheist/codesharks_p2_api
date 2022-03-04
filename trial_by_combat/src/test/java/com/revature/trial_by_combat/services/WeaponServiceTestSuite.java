@@ -15,13 +15,13 @@ public class WeaponServiceTestSuite {
     @Mock
 	private WeaponDAO weaponDAO;
 	
-	WeaponServices sut;
+	WeaponService sut;
 	
 	Weapon weapon;
 	
 	@BeforeEach
 	public void testPrep() {
-        sut = new WeaponServices(weaponDAO);
+        sut = new WeaponService(weaponDAO);
         weapon = new Weapon();
 
     }

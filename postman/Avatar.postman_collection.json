@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "8a87352d-a883-4184-9ca5-9a109661e377",
+		"name": "Avatar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/avatar/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"avatar",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Avatar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"player\": {\"id\":\"28\"},\r\n    \"avatarname\": \"Rex\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/avatar",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"avatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Avatar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 38,\r\n        \"player\": {\r\n            \"id\": 28,\r\n            \"email\": \"email@gmail.com\",\r\n            \"username\": \"phil\"\r\n        },\r\n        \"avatarname\": \"Rex\",\r\n        \"strength\": 15,\r\n        \"dexterity\": 9,\r\n        \"constitution\": 9,\r\n        \"intelligence\": 7,\r\n        \"wisdom\": 7,\r\n        \"charisma\": 14,\r\n        \"gold\": 100,\r\n        \"currentHealth\": 20,\r\n        \"maximumHealth\": 20\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/avatar",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"avatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/avatar/?id=42",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"avatar",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "42"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/avatar/?id=36",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"avatar",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "36"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

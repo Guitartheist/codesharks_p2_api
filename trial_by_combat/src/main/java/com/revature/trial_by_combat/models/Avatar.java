@@ -74,7 +74,7 @@ public class Avatar {
 		gold = rollDice(3, 6) * 10;
 		maximumHealth = 0;
 		for (int i = 0; i < 3; i++) {
-			int health = rollDice(3, 6) + getModifier(constitution);
+			int health = rollDice(1, 6) + getModifier(constitution);
 			maximumHealth += (health>0) ? health : 1;
 		}
 		currentHealth = maximumHealth;
