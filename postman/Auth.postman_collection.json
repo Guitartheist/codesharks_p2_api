@@ -1,0 +1,48 @@
+{
+	"info": {
+		"_postman_id": "9cfa4bc6-4f8f-43bf-9c25-c5807deacce2",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0NjY0NzEyNCwiaWF0IjoxNjQ2NjExMTI0fQ.Q90LVKqz-uULWawBEAJTr5BULlTgieYdrh5chQZ64Rq-i_h0kEPUP9peeOEkdSiGUfyHyyvIRBf2LykKZZiBUw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"sadmin\",\r\n    \"password\": \"CodeSharks\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
