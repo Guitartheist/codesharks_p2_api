@@ -1,5 +1,7 @@
 package com.revature.trial_by_combat.web.servlets;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -30,7 +32,7 @@ public class PlayerServlet {
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Player createPlayer(@RequestBody Player player) {
+	public Player createPlayer(@RequestBody @Valid Player player) {
 		return playerService.registerNewPlayer(player);
 	}
 	
@@ -58,7 +60,7 @@ public class PlayerServlet {
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Player updatePlayer(@RequestBody Player player, Authentication auth) {
+	public Player updatePlayer(@RequestBody @Valid Player player, Authentication auth) {
 		if (playerService.findPlayerById(player.getId()).get().getUsername().equals(auth.getName()))
 			return playerService.updatePlayer(player);
 		else

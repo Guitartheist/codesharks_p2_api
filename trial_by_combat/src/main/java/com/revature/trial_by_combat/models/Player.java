@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,6 +16,7 @@ public class Player {
 	@Id
 	@GeneratedValue
 	int id;
+	@Email
 	@Column(unique = true, nullable=false)
 	String email;
 	@Column(unique = true, nullable=false)
