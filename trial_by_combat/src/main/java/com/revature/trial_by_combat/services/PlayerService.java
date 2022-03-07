@@ -58,6 +58,12 @@ public class PlayerService {
 	public Player updatePlayer(Player player) {
 		if (player.getPassword() == null)
 			player.setPassword( playerDAO.findById(player.getId()).get().getPassword() );
+		else {
+			String password = player.getPassword();
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(password);
+			player.setPassword(hashedPassword);
+		}
 		return playerDAO.save(player);
 	}
 	
