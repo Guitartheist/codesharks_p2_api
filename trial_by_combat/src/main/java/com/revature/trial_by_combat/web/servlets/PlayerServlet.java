@@ -1,9 +1,8 @@
 package com.revature.trial_by_combat.web.servlets;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,18 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.trial_by_combat.models.Player;
 import com.revature.trial_by_combat.services.PlayerService;
-import com.revature.trial_by_combat.web.util.TokenManager;
 
 @RestController
 @RequestMapping("/player")
 public class PlayerServlet {
 	private final PlayerService playerService;
-	private final TokenManager tokenManager;
 	
 	@Autowired
-	public PlayerServlet(PlayerService playerService, TokenManager tokenManager) {
+	public PlayerServlet(PlayerService playerService) {
 		this.playerService = playerService;
-		this.tokenManager = tokenManager;
 	}
 	
 	@PostMapping("/register")
@@ -55,20 +51,24 @@ public class PlayerServlet {
 	@GetMapping("/me")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public String getUsernameFromToken(HttpServletRequest request) {
-		return tokenManager.getUsernameFromRequest(request);
+	public String getUsernameFromToken(Authentication auth) {
+		return auth.getName();
 	}
 	
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Player updatePlayer(@RequestBody Player player) {
-		return playerService.updatePlayer(player);
+	public Player updatePlayer(@RequestBody Player player, Authentication auth) {
+		if (playerService.findPlayerById(player.getId()).get().getUsername().equals(auth.getName()))
+			return playerService.updatePlayer(player);
+		else
+			return null;
 	}
 	
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
-	public void deletePlayer(@RequestParam int id) {
-		playerService.deletePlayer(id);
+	public void deletePlayer(@RequestParam int id, Authentication auth) {
+		if (playerService.findPlayerById(id).get().getUsername().equals(auth.getName()))
+			playerService.deletePlayer(id);
 	}
 }
