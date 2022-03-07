@@ -54,10 +54,4 @@ public class WeaponService {
 	public void deleteWeaponById(int id) {
 		weaponDAO.deleteById(id);
 	}
-
-	// @Transactional
-	// public Weapon authenticateWeapon() {
-
-	// }
-
 }

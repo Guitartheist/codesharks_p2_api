@@ -39,6 +39,8 @@ public class ChallengeServiceTestSuite {
 	Avatar avatar;
 
 	Avatar challenger;
+	
+	List<Challenge> mockList;
 
 	@BeforeEach
 	public void testPrep() {
