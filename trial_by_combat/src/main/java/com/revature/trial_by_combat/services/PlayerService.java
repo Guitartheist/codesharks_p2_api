@@ -3,6 +3,8 @@ package com.revature.trial_by_combat.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,11 @@ public class PlayerService {
 		boolean emailAvailable = playerDAO.findPlayerByEmail(player.getEmail()).isEmpty();
 		
 		if (usernameAvailable && emailAvailable) {
+			String password = player.getPassword();
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(password);
+			player.setPassword(hashedPassword);
+			
 			Player persistedPlayer = playerDAO.save(player);
 			return persistedPlayer;
 		}
@@ -37,6 +44,14 @@ public class PlayerService {
 	
 	public Optional<Player> findPlayerById(int id) {
 		return playerDAO.findById(id);
+	}
+	
+	public Optional<Player> findPlayerByUsername(String username) {
+		return playerDAO.findPlayerByUsername(username);
+	}
+	
+	public Player findPlayerByUsernameAndPassword(String username, String password) {
+		return playerDAO.findPlayerByUsernameAndPassword(username, password);
 	}
 	
 	@Transactional
