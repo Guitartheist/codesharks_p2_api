@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "c2d4f4ac-6964-49cd-84c9-96c68fb21594",
+		"name": "HealingPotion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Potions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTM5NjcsImlhdCI6MTY0Njc3Nzk2N30.JeNzaQb5q7yBtbBsh44swICwdNimNZhnzP5RPEuo2k0jXGaP66s2z9mjVAykg0c_XdbtWMMZGZn-YluW76zCMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/healing_potion/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"healing_potion",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Healing Potion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTM5NjcsImlhdCI6MTY0Njc3Nzk2N30.JeNzaQb5q7yBtbBsh44swICwdNimNZhnzP5RPEuo2k0jXGaP66s2z9mjVAykg0c_XdbtWMMZGZn-YluW76zCMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"itemname\": \"Testpotion\",\r\n    \"description\": \"test potion description\",\r\n    \"healingDie\": \"20\",\r\n    \"healingBonus\": \"10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/healing_potion",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"healing_potion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Healing Potion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTM5NjcsImlhdCI6MTY0Njc3Nzk2N30.JeNzaQb5q7yBtbBsh44swICwdNimNZhnzP5RPEuo2k0jXGaP66s2z9mjVAykg0c_XdbtWMMZGZn-YluW76zCMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"25\",\r\n    \"itemname\": \"Testpotion update\",\r\n    \"description\": \"test potion description UPDATE\",\r\n    \"healingDie\": \"8\",\r\n    \"healingBonus\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/healing_potion",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"healing_potion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Healing Potion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTM5NjcsImlhdCI6MTY0Njc3Nzk2N30.JeNzaQb5q7yBtbBsh44swICwdNimNZhnzP5RPEuo2k0jXGaP66s2z9mjVAykg0c_XdbtWMMZGZn-YluW76zCMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/healing_potion?id=16",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"healing_potion"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "16"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
