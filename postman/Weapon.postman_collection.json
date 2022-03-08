@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "ddceb0a4-4141-4fab-9443-d604a0a6d9d5",
+		"name": "Weapon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Weapons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/weapon/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"weapon",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Weapon",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"damageDie\": \"20\",\r\n    \"damageBonus\": \"10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/weapon",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"weapon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Weapon",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"16\",\r\n    \"damageDie\": \"8\",\r\n    \"damageBonus\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/weapon",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"weapon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Weapon",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/weapon?id=16",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"weapon"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "16"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
