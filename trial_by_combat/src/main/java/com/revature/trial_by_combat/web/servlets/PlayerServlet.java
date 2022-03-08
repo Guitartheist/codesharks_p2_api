@@ -53,8 +53,8 @@ public class PlayerServlet {
 	@GetMapping("/me")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public String getUsernameFromToken(Authentication auth) {
-		return "{\"username\":\""  + auth.getName() + "\"}";
+	public Player getUsernameFromToken(Authentication auth) {
+		return playerService.findPlayerByUsername( auth.getName() ).get();
 	}
 	
 	@PutMapping
