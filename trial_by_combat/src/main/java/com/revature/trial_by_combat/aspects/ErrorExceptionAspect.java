@@ -1,10 +1,11 @@
-package com.revature.trial_by_combat.apects;
+package com.revature.trial_by_combat.aspects;
 
-import com.revature.trial_by_combat.Excpetions.AuthenticationException;
-import com.revature.trial_by_combat.Excpetions.AuthorizationException;
-import com.revature.trial_by_combat.Excpetions.InvalidRequestException;
-import com.revature.trial_by_combat.Excpetions.ResourceNotFoundException;
-import com.revature.trial_by_combat.Excpetions.ResourcePersistenceException;
+
+import com.revature.trial_by_combat.exceptions.AuthenticationException;
+import com.revature.trial_by_combat.exceptions.AuthorizationException;
+import com.revature.trial_by_combat.exceptions.InvalidRequestException;
+import com.revature.trial_by_combat.exceptions.ResourceNotFoundException;
+import com.revature.trial_by_combat.exceptions.ResourcePersistenceException;
 import com.revature.trial_by_combat.web.dtos.ErrorExceptionResponse;
 
 import org.springframework.http.HttpStatus;
