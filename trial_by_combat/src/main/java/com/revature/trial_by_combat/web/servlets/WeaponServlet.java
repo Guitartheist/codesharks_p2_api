@@ -62,6 +62,7 @@ public class WeaponServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Weapon updateWeapon(@RequestBody Weapon weapon) {
+		weapon.setPrice(weapon.getDamageDie() + (weapon.getDamageBonus() * 10));
 		return weaponService.updateWeapon(weapon);
 	}
 
