@@ -2,6 +2,7 @@ package com.revature.trial_by_combat.web.servlets;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,8 +33,8 @@ public class AvatarServlet {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Avatar createAvatar(@RequestBody Avatar avatar) {
-		avatar.setPlayer( playerService.findPlayerById(avatar.getPlayer().getId()).get() );
+	public Avatar createAvatar(@RequestBody Avatar avatar, Authentication auth) {
+		avatar.setPlayer( playerService.findPlayerByUsername( auth.getName() ).get() );
 		return avatarService.createNewAvatar(avatar);
 	}
 	
