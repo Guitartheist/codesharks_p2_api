@@ -33,6 +33,7 @@ public class WeaponServlet {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public Weapon createWeapon(@RequestBody Weapon weapon) throws Exception {
+		weapon.setPrice(weapon.getDamageDie() + (weapon.getDamageBonus() * 10));
 		return weaponService.registerNewWeapon(weapon);
 	}
 
