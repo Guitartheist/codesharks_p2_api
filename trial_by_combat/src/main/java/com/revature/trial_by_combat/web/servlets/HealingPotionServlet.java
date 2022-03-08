@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.trial_by_combat.models.HealingPotion;
-import com.revature.trial_by_combat.models.Weapon;
 import com.revature.trial_by_combat.services.HealingPotionService;
 
 @RestController
@@ -34,6 +33,7 @@ public class HealingPotionServlet {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public HealingPotion createHealingPotion(@RequestBody HealingPotion healingPotion) {
+		healingPotion.setPrice(healingPotion.getHealingDie() + (healingPotion.getHealingBonus() * 10));
 		return healingPotionService.registerNewHealingPotion(healingPotion);
 	}
 	
@@ -62,6 +62,7 @@ public class HealingPotionServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public HealingPotion updateHealingPotion(@RequestBody HealingPotion healingPotion) {
+		healingPotion.setPrice(healingPotion.getHealingDie() + (healingPotion.getHealingBonus() * 10));
 		return healingPotionService.updateHealingPotion(healingPotion);
 	}
 	
