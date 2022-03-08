@@ -1,4 +1,4 @@
-package com.revature.trial_by_combat.Excpetions;
+package com.revature.trial_by_combat.exceptions;
 
 public class AuthorizationException extends RuntimeException{
 
