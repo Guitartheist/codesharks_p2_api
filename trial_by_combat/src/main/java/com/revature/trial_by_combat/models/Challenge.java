@@ -18,11 +18,9 @@ public class Challenge {
 	@GeneratedValue
 	int id;
 	@ManyToOne(optional = false, cascade = CascadeType.MERGE)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "creator_id", unique = false, nullable = false, updatable = false)
 	Avatar avatar;
 	@ManyToOne(optional = false, cascade = CascadeType.MERGE)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "challenger_id", unique = false, nullable = false, updatable = false)
 	Avatar challenger;
 
