@@ -54,7 +54,7 @@ public class PlayerServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public String getUsernameFromToken(Authentication auth) {
-		return auth.getName();
+		return "{\"username\":\""  + auth.getName() + "\"}";
 	}
 	
 	@PutMapping
