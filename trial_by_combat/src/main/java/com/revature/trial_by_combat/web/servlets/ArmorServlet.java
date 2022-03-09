@@ -32,6 +32,7 @@ public class ArmorServlet {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public Armor createArmor(@RequestBody Armor armor) {
+		armor.setPrice(armor.getArmorClass() * armor.getArmorClass() * 10 + armor.getDamageReduction() * 10);
 		return armorService.registerNewArmor(armor);
 	}
 	
@@ -60,6 +61,7 @@ public class ArmorServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Armor updateArmor(@RequestBody Armor armor) {
+		armor.setPrice(armor.getArmorClass() * armor.getArmorClass() * 10 + armor.getDamageReduction() * 10);
 		return armorService.updateArmor(armor);
 	}
 	

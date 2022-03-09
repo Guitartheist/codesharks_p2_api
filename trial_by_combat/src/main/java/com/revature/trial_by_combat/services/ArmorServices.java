@@ -21,7 +21,6 @@ public class ArmorServices {
 
 	@Transactional
 	public Armor registerNewArmor(Armor armor) {
-
 		boolean armorNameAvailable = armorDAO.findArmorByItemName(armor.getItemname()).isPresent();
 
 		if (armorNameAvailable) {
