@@ -1,6 +1,7 @@
 package com.revature.trial_by_combat.web.servlets;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +34,8 @@ public class LoadoutServlet {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Loadout createLoadout(@RequestBody Loadout loadout) {
-		loadout.setPlayer( playerService.findPlayerById(loadout.getPlayer().getId()) .get() );
+	public Loadout createLoadout(@RequestBody Loadout loadout, Authentication auth) {
+		loadout.setPlayer( playerService.findPlayerByUsername(auth.getName()).get());
 		return loadoutService.createNewLoadout(loadout);
 	}
 	
