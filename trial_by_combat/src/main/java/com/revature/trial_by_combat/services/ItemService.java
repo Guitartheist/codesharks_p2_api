@@ -21,6 +21,10 @@ public class ItemService {
 		return itemDAO.findAllItems();
 	}
 	
+	public List<Item> findRandomItems(int budget) {
+		return itemDAO.findItemsBelow(budget);
+	}
+	
 	public Item findItemById(int id) {
 		return itemDAO.findItemById(id);
 	}

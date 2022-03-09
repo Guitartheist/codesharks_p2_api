@@ -1,6 +1,7 @@
 package com.revature.trial_by_combat.daos;
 
 import java.util.List;
+import java.lang.Math;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,6 +24,19 @@ public class ItemDAO {
 			return (List<Item>) session.createQuery("from Item").getResultList();
 		}
 		catch (Exception e) {
+			
+		}
+		return null;
+	}
+	
+	public List<Item> findItemsBelow(int budget) {
+		try (Session session = sessionFactory.openSession()) {
+			List<Item> allItems = (List<Item>) session.createQuery("from Item where price<:Budget").setParameter("Budget", budget).getResultList();
+			while(allItems.size() > 3) {
+				allItems.remove((int) Math.random() * (allItems.size()-1));
+			}
+			return allItems;
+		} catch (Exception e) {
 			
 		}
 		return null;

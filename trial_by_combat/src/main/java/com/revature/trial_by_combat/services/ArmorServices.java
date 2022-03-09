@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.trial_by_combat.daos.ArmorDAO;
 import com.revature.trial_by_combat.models.Armor;
+import com.revature.trial_by_combat.models.Weapon;
 
 @Service
 public class ArmorServices {
@@ -53,5 +54,12 @@ public class ArmorServices {
 	@Transactional
 	public void deleteArmorById(int id) {
 		armorDAO.deleteById(id);
+	}
+	
+	@Transactional
+	public Armor findRandomArmorByPrice(int budget) {
+		List<Armor> armors = armorDAO.findArmorsByPrice(budget);
+		return armors.get((int) (Math.random() * armors.size()));
+		//return armors.get(1);
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.trial_by_combat.models.Armor;
+import com.revature.trial_by_combat.models.Weapon;
 import com.revature.trial_by_combat.services.ArmorServices;
 
 @RestController
@@ -55,6 +56,13 @@ public class ArmorServlet {
 	@ResponseBody
 	public Iterable<Armor> findAllArmor() {
 		return armorService.findAllArmor();
+	}
+	
+	@GetMapping("/randarmor")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Armor findRandomWeapon(@RequestParam int budget) {
+		return armorService.findRandomArmorByPrice(budget);
 	}
 	
 	@PutMapping

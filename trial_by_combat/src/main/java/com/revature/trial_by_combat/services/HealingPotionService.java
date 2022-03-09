@@ -1,5 +1,6 @@
 package com.revature.trial_by_combat.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.trial_by_combat.daos.HealingPotionDAO;
 import com.revature.trial_by_combat.models.HealingPotion;
+import com.revature.trial_by_combat.models.Weapon;
 
 @Service
 public class HealingPotionService {
@@ -55,5 +57,11 @@ public class HealingPotionService {
 	@Transactional
 	public void deleteHealingPotion(int id) {
 		healingPotionDAO.deleteById(id);
+	}
+	
+	@Transactional
+	public HealingPotion findRandomHealingPotionByPrice(int budget) {
+		List<HealingPotion> healingPotions = healingPotionDAO.findHealingPotionsByPrice(budget);
+		return healingPotions.get((int) (Math.random() * healingPotions.size()));
 	}
 }

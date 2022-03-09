@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c2d4f4ac-6964-49cd-84c9-96c68fb21594",
+		"_postman_id": "8fb6041e-feb9-4db3-a59d-2f81bc7a2d3f",
 		"name": "HealingPotion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -143,6 +143,14 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Random Potion",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}

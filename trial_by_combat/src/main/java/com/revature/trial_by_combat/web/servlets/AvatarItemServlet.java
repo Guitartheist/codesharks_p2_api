@@ -72,6 +72,13 @@ public class AvatarItemServlet {
 	public Iterable<AvatarItem> findAvatarItemsByAvatarId(@RequestParam int id) {
 		return avatarItemService.findAvatarItemsByAvatarId(id);
 	}
+	
+	@GetMapping("/randitems")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Iterable<Item> findRandomItemsByAvatarGold(@RequestParam int id) {
+		return itemService.findRandomItems(avatarService.findAvatarById(id).get().getGold());
+	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)

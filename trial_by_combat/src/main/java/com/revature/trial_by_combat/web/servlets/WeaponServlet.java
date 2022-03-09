@@ -58,6 +58,13 @@ public class WeaponServlet {
 		return weaponService.findAllWeapons();
 	}
 
+	@GetMapping("/randweapon")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Weapon findRandomWeapon(@RequestParam int budget) {
+		return weaponService.findRandomWeaponByPrice(budget);
+	}
+	
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
