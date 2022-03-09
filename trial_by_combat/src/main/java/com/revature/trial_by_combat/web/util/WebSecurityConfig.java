@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/auth/login", "/player/register").permitAll().anyRequest().authenticated().and()
+		http.csrf().disable().authorizeRequests().antMatchers("/auth/login", "/player/register", "/challenge/all").permitAll().anyRequest().authenticated().and()
 				.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors();
 		http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
