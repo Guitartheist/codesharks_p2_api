@@ -9,9 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 @Entity
 public class Challenge {
 	@Id
@@ -21,7 +18,7 @@ public class Challenge {
 	@JoinColumn(name = "creator_id", unique = false, nullable = false, updatable = false)
 	Avatar avatar;
 	@ManyToOne(optional = false, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "challenger_id", unique = false, nullable = false, updatable = false)
+	@JoinColumn(name = "challenger_id", unique = false, nullable = true, updatable = false)
 	Avatar challenger;
 
 	public int getId() {

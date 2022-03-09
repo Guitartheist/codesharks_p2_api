@@ -61,9 +61,7 @@ public class ChallengeService {
 	@Transactional
 	public boolean authenticateChallenge(Avatar avatar, Avatar challenger) throws Exception {
 
-		if (avatar == null || challenger == null) {
-			throw new Exception("You can't have a challenge with one Avatar!");
-		} else if (avatar.equals(challenger)) {
+		if (avatar.equals(challenger)) {
 			throw new Exception("An Avatar can't fight against themselves!");
 		}
 		return true;
