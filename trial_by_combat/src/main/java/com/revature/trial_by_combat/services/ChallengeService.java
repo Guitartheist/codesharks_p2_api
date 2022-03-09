@@ -22,7 +22,8 @@ public class ChallengeService {
 	@Transactional
 	public Challenge createNewChallenge(Challenge challenge) throws Exception {
 
-		authenticateChallenge(challenge.getAvatar(), challenge.getChallenger());
+		if (challenge.getChallenger() != null)
+			authenticateChallenge(challenge.getAvatar(), challenge.getChallenger());
 
 		Challenge persistedChallenge = challengeDAO.save(challenge);
 		return persistedChallenge;
