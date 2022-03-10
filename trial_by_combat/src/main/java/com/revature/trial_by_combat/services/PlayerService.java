@@ -22,8 +22,8 @@ public class PlayerService {
 	
 	@Transactional
 	public Player registerNewPlayer(Player player) {
-		boolean usernameAvailable = playerDAO.findPlayerByUsername(player.getUsername()).isEmpty();
-		boolean emailAvailable = playerDAO.findPlayerByEmail(player.getEmail()).isEmpty();
+		boolean usernameAvailable = !(playerDAO.findPlayerByUsername(player.getUsername()).isPresent());
+		boolean emailAvailable = !(playerDAO.findPlayerByEmail(player.getEmail()).isPresent());
 		
 		if (usernameAvailable && emailAvailable) {
 			String password = player.getPassword();
