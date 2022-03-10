@@ -64,34 +64,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-                <groupId>com.microsoft.azure</groupId>
-                <artifactId>azure-webapp-maven-plugin</artifactId>
-                <version>2.4.0</version>
-                <configuration>
-                    <subscriptionId>ef5eff53-d2bb-4b73-ac28-ce54ff5d84e7</subscriptionId>
-                    <schemaVersion>V2</schemaVersion>
-                    <resourceGroup>trial-by-combat</resourceGroup>
-                    <appName>trial-by-combat</appName>
-                    <region>centralus</region>
-                    <pricingTier>B1</pricingTier>
-                    <runtime>
-                        <os>linux</os>
-                        <javaVersion>java8</javaVersion>
-                        <webContainer>Java SE</webContainer>
-                    </runtime>
-                    <deployment>
-                        <resources>
-                            <resource>
-                                <directory>${project.basedir}/target</directory>
-                                <includes>
-                                    <include>*.jar</include>
-                                </includes>
-                            </resource>
-                        </resources>
-                    </deployment>
-                </configuration>
-            </plugin>
 		</plugins>
 	</build>
 
