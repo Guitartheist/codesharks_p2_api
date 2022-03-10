@@ -19,16 +19,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.trial_by_combat.models.Player;
 import com.revature.trial_by_combat.services.PlayerService;
 
+/**
+ * 
+ * REST endpoint for calls to player database
+ * 
+ * @author Philip Wentworth
+ * @version 1.0
+ * @since 1.0
+ * 
+ */
 @RestController
 @RequestMapping("/player")
 public class PlayerServlet {
+	
+	/**
+	 *  Calls the Player Data Access Object (extends CrudRepository)
+	 */
 	private final PlayerService playerService;
 	
+	/**
+	 * Database access dependency injection.
+	 * PlayerService Dependency Injection.
+	 * @param playerService calls the Player Data Access Object to interact with database.
+	 */
 	@Autowired
 	public PlayerServlet(PlayerService playerService) {
 		this.playerService = playerService;
 	}
 	
+	/**
+	 * Creates a Player in the database.
+	 * @param player Player object to be persisted in database.
+	 * @return Returns a copy of the persisted object.
+	 */
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -36,6 +59,11 @@ public class PlayerServlet {
 		return playerService.registerNewPlayer(player);
 	}
 	
+	/**
+	 * Retrieves player by supplied id.
+	 * @param id Id of Player to be retrieved from the database.
+	 * @return A copy of the Player.
+	 */
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -43,6 +71,10 @@ public class PlayerServlet {
 		return playerService.findPlayerById(id).get();
 	}
 	
+	/**
+	 * Retrieves all players from the database. (Mapped to ./player/all).
+	 * @return An Iterable interface that returns the players retrieved from the database
+	 */
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -50,6 +82,11 @@ public class PlayerServlet {
 		return playerService.findAllPlayers();
 	}
 	
+	/**
+	 * Retrieves player by username from JWT auth token. (Mapped to ./player/me).
+	 * @param auth JWT user token
+	 * @return A player object
+	 */
 	@GetMapping("/me")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -57,6 +94,12 @@ public class PlayerServlet {
 		return playerService.findPlayerByUsername( auth.getName() ).get();
 	}
 	
+	/**
+	 * Updates the player's information in the database.
+	 * @param player The player object to updated in the database
+	 * @param auth JWT user token
+	 * @return A copy of the updated armor object
+	 */
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -67,6 +110,11 @@ public class PlayerServlet {
 			return null;
 	}
 	
+	/**
+	 * Deletes the player with the supplied id from the database
+	 * @param id The id of the player to be deleted
+	 * @param auth JWT auth token
+	 */
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deletePlayer(@RequestParam int id, Authentication auth) {

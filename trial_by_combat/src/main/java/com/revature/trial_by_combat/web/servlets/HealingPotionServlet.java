@@ -19,17 +19,38 @@ import com.revature.trial_by_combat.models.HealingPotion;
 import com.revature.trial_by_combat.models.Weapon;
 import com.revature.trial_by_combat.services.HealingPotionService;
 
+/**
+ * 
+ * REST endpoint for calls to healing potion database
+ *
+ * @author Tracy Bodine
+ * @version 1.0
+ * @since 1.0
+ * 
+ */
 @RestController
 @RequestMapping("/healing_potion")
 public class HealingPotionServlet {
-	
+	/**
+	 *  Calls the Healing Potion Data Access Object (extends CrudRepository)
+	 */
 	private final HealingPotionService healingPotionService;
 	
+	/**
+	 * Database access dependency injection.
+	 * Healing Potion dependency injection.
+	 * @param healingPotionService calls the Challenge Action Item Data Access Object to interact with database.
+	 */
 	@Autowired
 	public HealingPotionServlet(HealingPotionService healingPotionService) {
 		this.healingPotionService = healingPotionService;
 	}
 	
+	/**
+	 * Creates an Healing Potion in the database.
+	 * @param healingPotion Healing Potion object to be persisted in database.
+	 * @return Returns a copy of the persisted object.
+	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -38,6 +59,11 @@ public class HealingPotionServlet {
 		return healingPotionService.registerNewHealingPotion(healingPotion);
 	}
 	
+	/**
+	 * Retrieves Healing Potion by supplied id.
+	 * @param id Id of Healing Potion Item to be retrieved from the database.
+	 * @return A copy of the Healing Potion.
+	 */
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -45,6 +71,11 @@ public class HealingPotionServlet {
 		return healingPotionService.findHealingPotionById(id);
 	}
 	
+	/**
+	 * Retrieves Healing Potion by supplied name.
+	 * @param itemname Name of Healing Potion Item to be retrieved from the database.
+	 * @return A copy of the Healing Potion.
+	 */
     @GetMapping("/itemname")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -52,6 +83,10 @@ public class HealingPotionServlet {
 		return healingPotionService.findHealingPotionByItemname(itemname);
     }
 	
+    /**
+	 * Retrieves all healing potions from the database. (Mapped to ./healing_potion/all).
+	 * @return An Iterable interface that returns the healing potions retrieved from the database
+	 */
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -66,6 +101,12 @@ public class HealingPotionServlet {
 		return healingPotionService.findRandomHealingPotionByPrice(budget);
 	}
 	
+	/**
+	 * Updates the healing potion's information in the database.
+	 * Sets the price based on the healing bonus and healing die.
+	 * @param healingPotion The healing potion object to updated in the database
+	 * @return A copy of the updated healing potion object
+	 */
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -74,6 +115,10 @@ public class HealingPotionServlet {
 		return healingPotionService.updateHealingPotion(healingPotion);
 	}
 	
+	/**
+	 * Deletes the healing potion with the supplied id from the database
+	 * @param id The id of the healing potion to be deleted
+	 */
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteHealingPotion(@RequestParam int id) {

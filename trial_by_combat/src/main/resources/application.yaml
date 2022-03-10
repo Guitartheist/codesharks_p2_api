@@ -1,0 +1,29 @@
+server:
+  servlet:
+    context-path: /trial-by-combat
+    
+spring:
+  application: 
+    name: trial-by-combat-api
+    
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "beans"
+          - "health"
+          - "info"
+
+secret: ${secret}

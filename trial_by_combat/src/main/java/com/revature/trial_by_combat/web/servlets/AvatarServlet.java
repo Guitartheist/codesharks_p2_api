@@ -18,18 +18,45 @@ import com.revature.trial_by_combat.models.Avatar;
 import com.revature.trial_by_combat.services.AvatarService;
 import com.revature.trial_by_combat.services.PlayerService;
 
+/**
+ * 
+ * REST endpoint for calls to Avatar database
+ *
+ * @author Philip Wentworth
+ * @version 1.0
+ * @since 1.0
+ *
+ */
 @RestController
 @RequestMapping("/avatar")
 public class AvatarServlet {
+	/**
+	 *  Calls the Avatar Data Access Object (extends CrudRepository)
+	 */
 	private final AvatarService avatarService;
+	/**
+	 *  Calls the Player Data Access Object (extends CrudRepository)
+	 */
 	private final PlayerService playerService;
 	
+	/**
+	 * Database access dependency injection.
+	 * AvatarService, PlayerService Dependency Injection.
+	 * @param avatarService calls the Avatar Data Access Object to interact with database.
+	 * @param playerService calls the Player Data Access Object to interact with database.
+	 */
 	@Autowired
 	public AvatarServlet(AvatarService avatarService, PlayerService playerService) {
 		this.avatarService = avatarService;
 		this.playerService = playerService;
 	}
 	
+	/**
+	 * Creates an Avatar in the database.
+	 * @param avatar Avatar object to be persisted in database.
+	 * @param auth JWT user token.
+	 * @return Returns a copy of the persisted object.
+	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -38,6 +65,11 @@ public class AvatarServlet {
 		return avatarService.createNewAvatar(avatar);
 	}
 	
+	/**
+	 * Retrieves Avatar by supplied id.
+	 * @param id Id of Avatar to be retrieved from the database.
+	 * @return A copy of the Avatar.
+	 */
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -45,6 +77,11 @@ public class AvatarServlet {
 		return avatarService.findAvatarById(id).get();
 	}
 	
+	/**
+	 * Retrieves Avatars by supplied Player id. (Mapped to ./avatar/player).
+	 * @param auth JWT auth token.
+	 * @return An Iterable interface that returns the Avatars retrieved from the database.
+	 */
 	@GetMapping("/player")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -52,6 +89,10 @@ public class AvatarServlet {
 		return avatarService.findAvatarsByPlayerId( playerService.findPlayerByUsername(auth.getName()).get().getId() );
 	}
 	
+	/**
+	 * Retrieves all avatars from the database. (Mapped to ./avatar/all).
+	 * @return An Iterable interface that returns the avatars retrieved from the database
+	 */
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -59,6 +100,11 @@ public class AvatarServlet {
 		return avatarService.findAllAvatars();
 	}
 	
+	/**
+	 * Updates the avatar's information in the database.
+	 * @param avatar The avatar object to updated in the database
+	 * @return A copy of the updated avatar object
+	 */
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -67,6 +113,10 @@ public class AvatarServlet {
 		return avatarService.updateAvatar(avatar);
 	}
 	
+	/**
+	 * Deletes the avatar with the supplied id from the database
+	 * @param id The id of the avatar item to be deleted
+	 */
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteAvatar(@RequestParam int id) {
