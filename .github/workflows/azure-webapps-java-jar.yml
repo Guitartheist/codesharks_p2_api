@@ -42,16 +42,8 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           cache: 'maven'
 
-      - name: Cache Maven archetypes
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('trial_by_combat/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn -f trial_by_combat/pom.xml clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
