@@ -33,7 +33,7 @@ public class ChallengeActionServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ChallengeAction addChallengeAction(@RequestBody ChallengeAction challengeAction) {
-		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ).get() );
+		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ) );
 		return challengeActionService.addChallengeAction(challengeAction);
 	}
 	
@@ -63,7 +63,7 @@ public class ChallengeActionServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ChallengeAction updateChallengeAction(@RequestBody ChallengeAction challengeAction) {
-		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ).get() );
+		challengeAction.setChallenge( challengeService.findChallengeById( challengeAction.getChallenge().getId() ) );
 		return challengeActionService.updateChallengeAction(challengeAction);
 	}
 	
