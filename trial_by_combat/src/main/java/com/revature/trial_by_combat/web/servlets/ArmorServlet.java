@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.trial_by_combat.models.Armor;
-import com.revature.trial_by_combat.models.Weapon;
 import com.revature.trial_by_combat.services.ArmorServices;
 
 /**
