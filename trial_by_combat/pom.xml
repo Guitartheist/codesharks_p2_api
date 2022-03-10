@@ -69,9 +69,9 @@
                 <artifactId>azure-webapp-maven-plugin</artifactId>
                 <version>2.4.0</version>
                 <configuration>
-                    <subscriptionId>64b220b7-cad0-429d-ad19-4c5de8dcebf1</subscriptionId>
+                    <subscriptionId>ef5eff53-d2bb-4b73-ac28-ce54ff5d84e7</subscriptionId>
                     <schemaVersion>V2</schemaVersion>
-                    <resourceGroup>tracy-bodine</resourceGroup>
+                    <resourceGroup>trial-by-combat</resourceGroup>
                     <appName>trial-by-combat</appName>
                     <region>centralus</region>
                     <pricingTier>B1</pricingTier>
