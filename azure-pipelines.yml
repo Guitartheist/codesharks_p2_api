@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: 'codesharks_p2_api/trial-by-combat/pom.xml'
+    mavenPomFile: 'Guitartheist/codesharks_p2_api/trial-by-combat/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
