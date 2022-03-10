@@ -89,25 +89,7 @@ public class ChallengeServiceTestSuite {
 
 		Optional<Challenge> mockChallenge = Optional.of(challenge);
 		when(challengeDAO.findById(1)).thenReturn(mockChallenge);
-		assertTrue(sut.findChallengeById(1).isPresent());
-	}
-
-	@Test
-	public void test_ChallengeService_findAllChallengesByAvatarId() {
-		List<Challenge> mockList = new ArrayList<Challenge>();
-		mockList.add(challenge);
-		Iterable<Challenge> iterableMock = mockList;
-		when(challengeDAO.findAllChallengesByAvatarId(2)).thenReturn(iterableMock);
-		assertNotNull(sut.findAllChallengesByAvatarId(2));
-	}
-
-	@Test
-	public void test_ChallengeService_findAllChallengesByChallengerId() {
-		List<Challenge> mockList = new ArrayList<Challenge>();
-		mockList.add(challenge);
-		Iterable<Challenge> iterableMock = mockList;
-		when(challengeDAO.findAllChallengesByChallengerId(3)).thenReturn(iterableMock);
-		assertNotNull(sut.findAllChallengesByChallengerId(3));
+		assertTrue(sut.findChallengeById(1) != null);
 	}
 
 	@Test

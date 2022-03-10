@@ -35,18 +35,8 @@ public class ChallengeService {
 	}
 
 	@Transactional
-	public Optional<Challenge> findChallengeById(int id) {
-		return challengeDAO.findById(id);
-	}
-
-	@Transactional
-	public Iterable<Challenge> findAllChallengesByAvatarId(int id) {
-		return challengeDAO.findAllChallengesByAvatarId(id);
-	}
-
-	@Transactional
-	public Iterable<Challenge> findAllChallengesByChallengerId(int id) {
-		return challengeDAO.findAllChallengesByChallengerId(id);
+	public Challenge findChallengeById(int id) {
+		return challengeDAO.findChallengeById(id);
 	}
 
 	@Transactional

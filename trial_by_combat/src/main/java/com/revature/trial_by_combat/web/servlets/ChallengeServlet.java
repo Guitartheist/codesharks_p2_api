@@ -2,8 +2,10 @@ package com.revature.trial_by_combat.web.servlets;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.trial_by_combat.models.Avatar;
 import com.revature.trial_by_combat.models.Challenge;
 import com.revature.trial_by_combat.services.ChallengeService;
 import com.revature.trial_by_combat.services.AvatarService;
@@ -45,21 +48,7 @@ public class ChallengeServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Challenge findChallengeById(@RequestParam int id) {
-		return challengeService.findChallengeById(id).get();
-	}
-
-	@GetMapping("/avatar")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public Iterable<Challenge> findAllChallengesByAvatarId(@RequestParam int id) {
-		return challengeService.findAllChallengesByAvatarId(id);
-	}
-
-	@GetMapping("/challenger")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public Iterable<Challenge> findAllChallengesByChallengerId(@RequestParam int id) {
-		return challengeService.findAllChallengesByChallengerId(id);
+		return challengeService.findChallengeById(id);
 	}
 
 	@GetMapping("/all")
@@ -73,8 +62,11 @@ public class ChallengeServlet {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Challenge updateChallenge(@RequestBody Challenge challenge) {
-		challenge.setAvatar(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
-		challenge.setChallenger(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
+		Avatar avatar = avatarService.findAvatarById(challenge.getAvatar().getId()).get();
+		Avatar challenger = avatarService.findAvatarById(challenge.getChallenger().getId()).get();
+		challenge = challengeService.findChallengeById(challenge.getId());
+		challenge.setAvatar(avatar);
+		challenge.setChallenger(challenger);
 		return challengeService.updateChallenge(challenge);
 	}
 
