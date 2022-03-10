@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ddceb0a4-4141-4fab-9443-d604a0a6d9d5",
+		"_postman_id": "375c8441-a3ec-4773-a934-8d4c1b227a36",
 		"name": "Weapon",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,7 +13,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTA1OTAsImlhdCI6MTY0Njc3NDU5MH0.d4uOKTJt3jbtcaCtDy5uL8zEqd_R3Gvub9A0kUGtPlifQv9bqUY32fAn-4HhwCGZoRYQ4tgYtdhPqKdqs-OvOg",
 							"type": "string"
 						}
 					]
@@ -43,7 +43,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTA1OTAsImlhdCI6MTY0Njc3NDU5MH0.d4uOKTJt3jbtcaCtDy5uL8zEqd_R3Gvub9A0kUGtPlifQv9bqUY32fAn-4HhwCGZoRYQ4tgYtdhPqKdqs-OvOg",
 							"type": "string"
 						}
 					]
@@ -52,7 +52,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"damageDie\": \"20\",\r\n    \"damageBonus\": \"10\"\r\n}",
+					"raw": "{\r\n    \"itemname\": \"testweap\",\r\n    \"description\": \"weapon for testing\",\r\n    \"damageDie\": \"20\",\r\n    \"damageBonus\": \"10\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,7 +90,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"16\",\r\n    \"damageDie\": \"8\",\r\n    \"damageBonus\": \"2\"\r\n}",
+					"raw": "{\r\n    \"id\": \"20\",\r\n    \"itemname\": \"test whip\",\r\n    \"description\": \"whip for testing\",\r\n    \"damageDie\": \"8\",\r\n    \"damageBonus\": \"2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,7 +119,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MDc3ODcsImlhdCI6MTY0Njc3MTc4N30.mPixMTZ5FMsCpdtYxOCNWrU20rCoWfyp0k7vfSmgidxB9u15BmbVy4U61tjnH56ebkjHbRz49aDAyj6cOWcsig",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4MTA1OTAsImlhdCI6MTY0Njc3NDU5MH0.d4uOKTJt3jbtcaCtDy5uL8zEqd_R3Gvub9A0kUGtPlifQv9bqUY32fAn-4HhwCGZoRYQ4tgYtdhPqKdqs-OvOg",
 							"type": "string"
 						}
 					]
@@ -136,7 +136,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/trial-by-combat/weapon?id=16",
+					"raw": "localhost:3000/trial-by-combat/weapon?id=18",
 					"host": [
 						"localhost"
 					],
@@ -148,7 +148,43 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "16"
+							"value": "18"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Random Weapon",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWRtaW4iLCJleHAiOjE2NDY4OTk3OTUsImlhdCI6MTY0Njg2Mzc5NX0.9-xYfR9zluf3NHvi4A-KCx7yNP-fscU6AVKEawoEJS3vVUnrlgvdodLN7v3NWoj8NKMljGSwQ_NwJ3PbmmXg2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/trial-by-combat/weapon/randweapon?budget=100",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trial-by-combat",
+						"weapon",
+						"randweapon"
+					],
+					"query": [
+						{
+							"key": "budget",
+							"value": "100"
 						}
 					]
 				}

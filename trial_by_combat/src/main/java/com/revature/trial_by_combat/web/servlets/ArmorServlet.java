@@ -94,6 +94,13 @@ public class ArmorServlet {
 		return armorService.findAllArmor();
 	}
 	
+	@GetMapping("/randarmor")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Armor findRandomWeapon(@RequestParam int budget) {
+		return armorService.findRandomArmorByPrice(budget);
+	}
+	
 	/**
 	 * Updates the supplied armor's information in the database.
 	 * Sets armor price based on the armor's damage reduction.

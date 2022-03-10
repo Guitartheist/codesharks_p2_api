@@ -93,6 +93,13 @@ public class HealingPotionServlet {
 		return healingPotionService.findAllHealingPotions();
 	}
 	
+	@GetMapping("/randhealingpotion")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public HealingPotion findRandomHealingPotion(@RequestParam int budget) {
+		return healingPotionService.findRandomHealingPotionByPrice(budget);
+	}
+	
 	/**
 	 * Updates the healing potion's information in the database.
 	 * Sets the price based on the healing bonus and healing die.

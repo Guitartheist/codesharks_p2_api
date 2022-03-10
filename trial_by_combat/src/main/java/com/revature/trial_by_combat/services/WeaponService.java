@@ -1,5 +1,6 @@
 package com.revature.trial_by_combat.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -53,5 +54,11 @@ public class WeaponService {
 	@Transactional
 	public void deleteWeaponById(int id) {
 		weaponDAO.deleteById(id);
+	}
+	
+	@Transactional
+	public Weapon findRandomWeaponByPrice(int budget) {
+		List<Weapon> weapons = weaponDAO.findWeaponsByPrice(budget);
+		return weapons.get((int) (Math.random() * weapons.size()));
 	}
 }

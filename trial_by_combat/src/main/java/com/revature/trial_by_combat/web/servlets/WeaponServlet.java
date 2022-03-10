@@ -95,6 +95,13 @@ public class WeaponServlet {
 		return weaponService.findAllWeapons();
 	}
 
+	@GetMapping("/randweapon")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Weapon findRandomWeapon(@RequestParam int budget) {
+		return weaponService.findRandomWeaponByPrice(budget);
+	}
+	
 	/**
 	 * Updates the supplied weapon's information in the database.
 	 * Sets weapon price based on the weapon's damage.

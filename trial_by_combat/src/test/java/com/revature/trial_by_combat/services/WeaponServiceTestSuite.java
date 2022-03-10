@@ -50,7 +50,7 @@ public class WeaponServiceTestSuite {
 		when(weaponDAO.findWeaponByItemName(weapon2.getItemname())).thenReturn(Optional.empty());
 		when(weaponDAO.save(weapon2)).thenReturn(weapon2);
 		assertNotNull(sut.registerNewWeapon(weapon2));
-
+		
 	}
 
 	@Test
@@ -85,9 +85,16 @@ public class WeaponServiceTestSuite {
 
 	@Test
 	public void test_WeaponService_findWeaponByItemName() {
-
 		when(weaponDAO.findWeaponByItemName("valid")).thenReturn(Optional.of(weapon));
 		assertNotNull(sut.findWeaponByItemName("valid"));
+	}
+	
+	@Test public void testWeaponService_findRandomWeaponByPrice() {
+		List<Weapon> mockList = new ArrayList<Weapon>();
+		mockList.add(weapon);
+		when(weaponDAO.findWeaponsByPrice(50)).thenReturn(mockList);
+		Weapon budgetWeapon = sut.findRandomWeaponByPrice(50);
+		assertNotNull(budgetWeapon);
 	}
 
 }
