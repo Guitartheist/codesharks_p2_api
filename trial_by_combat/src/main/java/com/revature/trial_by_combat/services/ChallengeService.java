@@ -24,7 +24,9 @@ public class ChallengeService {
 
 		if (challenge.getChallenger() != null)
 			authenticateChallenge(challenge.getAvatar(), challenge.getChallenger());
-
+		else {
+			throw new Exception("No challenge found to save to database.");
+		}		
 		Challenge persistedChallenge = challengeDAO.save(challenge);
 		return persistedChallenge;
 	}

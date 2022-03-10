@@ -19,14 +19,38 @@ import com.revature.trial_by_combat.services.ItemService;
 import com.revature.trial_by_combat.models.LoadoutItem;
 
 
-
+/**
+ * 
+ * REST endpoint for calls to loadout item database
+ *
+ * @author Joshua Evans
+ * @version 1.0
+ * @since 1.0
+ * 
+ */
 @RestController
 @RequestMapping("/loadout_item")
 public class LoadoutItemServlet {
+	/**
+	 *  Calls the Loadout Item Data Access Object (extends CrudRepository).
+	 */
 	private final LoadoutItemService loadoutItemService;
+	/**
+	 *  Calls the Loadout Data Access Object (extends CrudRepository)
+	 */
 	private final LoadoutService loadoutService;
+	/**
+	 *  Calls the Item Data Access Object (extends CrudRepository)
+	 */
 	private final ItemService itemService;
 	
+	/**
+	 * Database access dependency injection.
+	 * LoadoutItemService LoadoutService ItemService Dependency Injection.
+	 * @param loadoutItemService Calls the Loadout Item Data Access Object to interact with database.
+	 * @param loadoutService Calls the Loadout Data Access Object to interact with database.
+	 * @param itemService Calls the Item Data Access Object to interact with database.
+	 */
 	@Autowired
 	public LoadoutItemServlet(LoadoutItemService loadoutItemService, LoadoutService loadoutService, ItemService itemService) {
 		this.loadoutItemService = loadoutItemService;
@@ -34,7 +58,11 @@ public class LoadoutItemServlet {
 		this.itemService = itemService;
 	}
 
-/*** Create ***/
+	/**
+	 * Creates a Loadout Item in the database.
+	 * @param loadoutItem LoadoutItem object to be persisted in database.
+	 * @return Returns a copy of the persisted object.
+	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -44,14 +72,22 @@ public class LoadoutItemServlet {
 		return loadoutItemService.createNewLoadoutItem(loadoutItem);
 	}
 	
-/*** Read ***/
+	/**
+	 * Retrieves all loadout items from the database. (Mapped to ./loadout_item/all).
+	 * @return An Iterable interface that returns the loadout items retrieved from the database
+	 */
 	@GetMapping("/all")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Iterable<LoadoutItem> getAllLoadoutItems() {
 		return loadoutItemService.findAllLoadoutItems();
 	}
-		
+	
+	/**
+	 * Retrieves Loadout Items by supplied Loadout id. (Mapped to ./loaodut_item/loadout).
+	 * @param id Id of Loadout to be used to retrieve Loadout from the database.
+	 * @return An Iterable interface that returns the Loadout Items retrieved from the database.
+	 */
 	@GetMapping("/loadout")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -59,6 +95,11 @@ public class LoadoutItemServlet {
 		return loadoutItemService.findLoadoutsByLoadoutId(id);
 	}
 	
+	/**
+	 * Retrieves Loadout Item by supplied id.
+	 * @param id Id of Loadout Item to be retrieved from the database.
+	 * @return A copy of the Loadout Item.
+	 */
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -66,10 +107,12 @@ public class LoadoutItemServlet {
 		return loadoutItemService.findLoadoutItemById(id).get();
 	}
 	
-/*** Update ***/
-	// everything in update item is immutable
+	// Can't update item. Everything in item is immutable
 	
-/*** Delete ***/
+	/**
+	 * Deletes the loadout item with the supplied id from the database
+	 * @param id The id of the loadout item to be deleted
+	 */
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteLoadoutItemById(@RequestParam int id) {
