@@ -48,8 +48,8 @@ public class AvatarServlet {
 	@GetMapping("/player")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Iterable<Avatar> findAvatarsByPlayerId(@RequestParam int id) {
-		return avatarService.findAvatarsByPlayerId(id);
+	public Iterable<Avatar> findAvatarsByPlayerId(Authentication auth) {
+		return avatarService.findAvatarsByPlayerId( playerService.findPlayerByUsername(auth.getName()).get().getId() );
 	}
 	
 	@GetMapping("/all")

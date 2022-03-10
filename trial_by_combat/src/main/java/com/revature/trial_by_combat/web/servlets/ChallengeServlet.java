@@ -34,7 +34,10 @@ public class ChallengeServlet {
 	@ResponseBody
 	public Challenge createChallenge(@RequestBody Challenge challenge) throws Exception {
 		challenge.setAvatar(avatarService.findAvatarById(challenge.getAvatar().getId()).get());
-		challenge.setChallenger(avatarService.findAvatarById(challenge.getChallenger().getId()).get());
+		if (challenge.getChallenger() != null)
+			challenge.setChallenger(avatarService.findAvatarById(challenge.getChallenger().getId()).get());
+		else
+			challenge.setChallenger(null);
 		return challengeService.createNewChallenge(challenge);
 	}
 
