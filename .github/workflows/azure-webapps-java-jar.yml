@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/trial_by_combat/target/*.jar'
+          path: '${{ github.workspace }}/trial_by_combat/target/*.war'
 
   deploy:
     runs-on: ubuntu-latest
