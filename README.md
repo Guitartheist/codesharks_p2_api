@@ -18,7 +18,7 @@ Players can post their own challenges or accept one that has already been posted
 -   [ ] Java
 -   [ ] JUnit
 -   [ ] Mockito
--   [ ] (Logging)
+-   [ ] Spring Security + JWT
 -   [ ] Jackson
 -   [ ] Java Servlets
 -   [ ] JavaScript React
